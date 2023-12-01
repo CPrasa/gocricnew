@@ -12,7 +12,7 @@ class FavoritePage extends StatelessWidget {
         backgroundColor: Colors.red,
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.home, size: 30,
               color: Colors.black, // Set the color to black
             ),
@@ -20,12 +20,12 @@ class FavoritePage extends StatelessWidget {
               // Navigate to the home page
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => const HomePage()),
               );
             },
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite,
               size: 30,
               color: Colors.yellow,
