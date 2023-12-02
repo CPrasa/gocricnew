@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gocric/src/features/authentication/controllers/signup_controller.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 import '../../../theme/theme.dart';
@@ -13,6 +14,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final controller = Get.put(SignUpController());
   final _formSignupKey = GlobalKey<FormState>();
   bool agreePersonalData = true;
   @override
@@ -58,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // full name
                       TextFormField(
+                        controller: controller.fullName,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Full name';
