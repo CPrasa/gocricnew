@@ -3,7 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 
 import '../../../theme/theme.dart';
 import '../../../widgets/custom_scaffold.dart';
-import '../screens/signin_screen.dart';
+import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -201,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             }
                           },
-                          child: const Text('Sign up'),
+                          child: const Text('SIGNUP'),
                         ),
                       ),
                       const SizedBox(
@@ -273,7 +273,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             },
                             child: Text(
-                              'Sign in',
+                              'Log in',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: lightColorScheme.primary,

@@ -171,7 +171,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               );
                             }
                           },
-                          child: const Text('Sign in'),
+                          child: const Text('LOGIN'),
                         ),
                       ),
                       const SizedBox(
