@@ -62,13 +62,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // full name
                       TextFormField(
-                        controller: controller.fullName,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Full name';
                           }
                           return null;
                         },
+                        controller: controller.fullName,
                         decoration: InputDecoration(
                           label: const Text('Full Name'),
                           hintText: 'Enter Full Name',
@@ -94,13 +94,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // email
                       TextFormField(
-                        controller: controller.email,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Email';
                           }
                           return null;
                         },
+                        controller: controller.email,
                         decoration: InputDecoration(
                           label: const Text('Email'),
                           hintText: 'Enter Email',
@@ -126,7 +126,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // password
                       TextFormField(
-                        controller: controller.password,
                         obscureText: true,
                         obscuringCharacter: '*',
                         validator: (value) {
@@ -135,6 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
+                        controller: controller.password,
                         decoration: InputDecoration(
                           label: const Text('Password'),
                           hintText: 'Enter Password',

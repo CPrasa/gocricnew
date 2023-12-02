@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gocric/src/features/authentication/controllers/login_controller.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 import '../../../theme/theme.dart';
@@ -13,7 +15,9 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  final controller = Get.put(LoginController());
   final _formSignInKey = GlobalKey<FormState>();
+
   bool rememberPassword = true;
   @override
   Widget build(BuildContext context) {
@@ -61,6 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           }
                           return null;
                         },
+                        controller: controller.email,
                         decoration: InputDecoration(
                           label: const Text('Email'),
                           hintText: 'Enter Email',
@@ -93,6 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           }
                           return null;
                         },
+                        controller: controller.password,
                         decoration: InputDecoration(
                           label: const Text('Password'),
                           hintText: 'Enter Password',
