@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gocric/card.dart';
+import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 import 'favorite_page.dart';
 
 void main() {
@@ -28,9 +29,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String selectedFilter =
-      'Live'; // Track the selected filter and initialize with 'Live'
-  DateTime selectedDate = DateTime.now(); // Track the selected date
+  String selectedFilter = 'Live';
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +57,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(
-              Icons.home, color: Colors.yellow,
+              Icons.home,
+              color: Colors.yellow,
               size: 30,
-              //color: selectedFilter.isNotEmpty ? Colors.yellow : null,
             ),
             onPressed: () {
               Navigator.pushReplacement(
@@ -72,7 +72,6 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.favorite,
               size: 30,
-              //color: selectedFilter.isNotEmpty ? Colors.yellow : null,
             ),
             onPressed: () {
               Navigator.pushReplacement(
@@ -80,6 +79,39 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (context) => FavoritePage()),
               );
             },
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              // Add your logout logic here
+              // For example, you can show a dialog or navigate to the login page
+              // ****
+              // *
+              // *
+              // *
+              // *
+              // *
+              // *
+              // *
+              // **
+              // *
+              // *
+              // *
+              // ***
+              // *
+              AuthenticationRepository.instance.logout();
+            },
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Logout',
+              style: TextStyle(color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.red,
+              elevation: 4,
+            ),
           ),
         ],
       ),
@@ -95,8 +127,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  // Original buildHeader method with the selectedFilter initialization
 
   Widget _buildHeader() {
     return Row(
@@ -251,7 +281,6 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            //for (int i = 0; i < 5; i++)
             ProductCard(
               team1Name: 'Sri Lanka',
               team2Name: 'Australia',
@@ -296,29 +325,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-
-    // SizedBox(
-    //   height: 120,
-    //   child: ListView.builder(
-    //     itemCount: 5,
-    //     scrollDirection: Axis.horizontal,
-    //     itemBuilder: (context, index) {
-    //       final hourlyForecast = data['list'][index + 1];
-    //       final hourlySky =
-    //           data['list'][index + 1]['weather'][0]['main'];
-    //       final hourlyTemp =
-    //           hourlyForecast['main']['temp'].toString();
-
-    //       final time = DateTime.parse(hourlyForecast['dt_txt']);
-    //       return HourlyForecastItem(
-    //         time: DateFormat.Hm().format(time),
-    //         temperature: hourlyTemp,
-    //         icon: hourlySky == 'Clouds' || hourlySky == 'Rain'
-    //             ? Icons.cloud
-    //             : Icons.sunny,
-    //       );
-    //     },
-    //   ),
-    // ),
   }
 }
