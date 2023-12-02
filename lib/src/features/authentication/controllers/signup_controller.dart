@@ -5,19 +5,22 @@ import 'package:gocric/src/features/authentication/controllers/authentication_re
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
-  //TextField Controllers to get data from TextFields
   final email = TextEditingController();
   final password = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
 
-  //Call this Function from Design & it will do the rest
-  void registerUser(String email, String password) {
-    String? error = AuthenticationRepository.instance
-        .createUserWithEmailAndPassword(email, password) as String?;
-    if (error != null) {
+  void registerUser(String email, String password) async {
+    var result = await AuthenticationRepository.instance
+        .createUserWithEmailAndPassword(email, password);
+
+    if (result is String) {
       Get.showSnackbar(GetSnackBar(
-        message: error.toString(),
+        message: result.toString(),
+      ));
+    } else if (result is Exception) {
+      Get.showSnackbar(GetSnackBar(
+        message: result.toString(),
       ));
     }
   }
