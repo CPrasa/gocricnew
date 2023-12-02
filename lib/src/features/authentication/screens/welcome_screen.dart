@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../theme/theme.dart';
-import '../widgets/custom_scaffold.dart';
-import '../widgets/welcome_button.dart';
+import '../../../theme/theme.dart';
+import '../../../widgets/custom_scaffold.dart';
+import '../../../widgets/welcome_button.dart';
 import 'signin_screen.dart';
 import 'signup_screen.dart';
 
