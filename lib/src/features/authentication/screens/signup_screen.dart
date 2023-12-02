@@ -201,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             }
                           },
-                          child: const Text('SIGNUP'),
+                          child: const Text('SIGN UP'),
                         ),
                       ),
                       const SizedBox(
