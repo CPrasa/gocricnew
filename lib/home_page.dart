@@ -4,10 +4,12 @@ import 'package:gocric/src/features/authentication/controllers/authentication_re
 import 'favorite_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,13 +18,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -56,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.home,
               color: Colors.yellow,
               size: 30,
@@ -69,14 +71,14 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite,
               size: 30,
             ),
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => FavoritePage()),
+                MaterialPageRoute(builder: (context) => const FavoritePage()),
               );
             },
           ),
@@ -100,16 +102,16 @@ class _HomePageState extends State<HomePage> {
               // *
               AuthenticationRepository.instance.logout();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.logout,
               color: Colors.white,
             ),
-            label: Text(
+            label: const Text(
               'Logout',
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Colors.red,
+              backgroundColor: Colors.red,
               elevation: 4,
             ),
           ),
@@ -187,8 +189,8 @@ class _HomePageState extends State<HomePage> {
           });
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Icon(
           Icons.calendar_month_outlined,
           size: 30,
@@ -201,9 +203,9 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _buildFilterChips(filters),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _buildSelectedDateText(),
       ],
     );
@@ -226,11 +228,11 @@ class _HomePageState extends State<HomePage> {
                   if (filter == 'Live') {
                     selectedDate = DateTime.now();
                   } else if (filter == 'Yesterday') {
-                    selectedDate = DateTime.now().subtract(Duration(days: 1));
+                    selectedDate = DateTime.now().subtract(const Duration(days: 1));
                   } else if (filter == 'Today') {
                     selectedDate = DateTime.now();
                   } else if (filter == 'Tomorrow') {
-                    selectedDate = DateTime.now().add(Duration(days: 1));
+                    selectedDate = DateTime.now().add(const Duration(days: 1));
                   }
                 });
               },
@@ -238,7 +240,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor:
                     selectedFilter.toLowerCase() == filter.toLowerCase()
                         ? Colors.yellow
-                        : Color.fromARGB(255, 240, 89, 13),
+                        : const Color.fromARGB(255, 240, 89, 13),
                 side: const BorderSide(
                   color: Color.fromRGBO(245, 247, 249, 1),
                 ),
@@ -267,11 +269,11 @@ class _HomePageState extends State<HomePage> {
     if (selectedFilter == 'Live') {
       dateText = 'Today, ${selectedDate.toLocal()}';
     } else if (selectedFilter == 'Yesterday') {
-      dateText = '${selectedDate.toLocal().subtract(Duration(days: 1))}';
+      dateText = '${selectedDate.toLocal().subtract(const Duration(days: 1))}';
     } else if (selectedFilter == 'Today') {
       dateText = '${selectedDate.toLocal()}';
     } else if (selectedFilter == 'Tomorrow') {
-      dateText = '${selectedDate.toLocal().add(Duration(days: 1))}';
+      dateText = '${selectedDate.toLocal().add(const Duration(days: 1))}';
     } else {
       dateText = '${selectedDate.toLocal()}';
     }
