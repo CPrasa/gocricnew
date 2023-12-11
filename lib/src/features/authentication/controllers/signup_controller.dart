@@ -10,6 +10,13 @@ class SignUpController extends GetxController {
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
 
+  @override
+  void dispose() {
+    super.dispose();
+    email.dispose();
+    password.dispose();
+  }
+
   void registerUser(String email, String password) async {
     var result = await AuthenticationRepository.instance
         .createUserWithEmailAndPassword(email, password);

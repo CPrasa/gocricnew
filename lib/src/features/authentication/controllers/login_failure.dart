@@ -2,7 +2,7 @@ class LogInWithEmailAndPasswordFailure implements Exception {
   final String message;
 
   const LogInWithEmailAndPasswordFailure(
-      [this.message = "An unknown error occurred."]);
+      [this.message = "Incorrect Email or Password"]);
 
   factory LogInWithEmailAndPasswordFailure.fromCode(String code) {
     switch (code) {
