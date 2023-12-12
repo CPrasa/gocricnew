@@ -1,23 +1,31 @@
 // favorite_page.dart
-
 import 'package:flutter/material.dart';
+import 'package:gocric/Widget/newscard.dart';
 import 'home_page.dart';
+// Import the new NewsCard widget
 
 class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorites'),
+        title: const Text(
+          'News',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.yellow,
+            fontSize: 30,
+          ),
+        ),
         backgroundColor: Colors.red,
         actions: [
           IconButton(
             icon: const Icon(
-              Icons.home, size: 30,
-              color: Colors.black, // Set the color to black
+              Icons.home,
+              size: 30,
+              color: Colors.black,
             ),
             onPressed: () {
-              // Navigate to the home page
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const HomePage()),
@@ -26,7 +34,7 @@ class FavoritePage extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(
-              Icons.favorite,
+              Icons.newspaper_rounded,
               size: 30,
               color: Colors.yellow,
             ),
@@ -37,11 +45,16 @@ class FavoritePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          'Favorites Page Content',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          NewsCard(
+            headline: 'Exciting Cricket Match Today!',
+            introduction:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            publicationTime: '2023-12-12 14:30',
+          ),
+          // Add more news cards as needed
+        ],
       ),
     );
   }

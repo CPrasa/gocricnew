@@ -2,13 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'favorite_page.dart';
+//import 'favorite_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

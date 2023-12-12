@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gocric/Widget/AppBarWidget.dart';
 import 'package:gocric/card.dart';
-import 'favorite_page.dart';
+import 'package:intl/intl.dart';
+import 'api_service.dart';
+import 'api_service_date.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
+String dateText = '';
+
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
@@ -28,6 +34,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Map<String, dynamic> apiData;
+  late Map<String, dynamic> apiDataByDate;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+    fetchDataDate();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      final data = await ApiService.fetchData();
+      apiData = data;
+      setState(() {
+        apiData = data;
+      });
+    } catch (error) {
+      print('Error fetching data: $error');
+    }
+  }
+
+  Future<void> fetchDataDate() async {
+    try {
+      final datas = await ApiServicedate.fetchDataDate();
+      apiDataByDate = datas!;
+      setState(() {
+        apiDataByDate = datas;
+      });
+    } catch (error) {
+      debugPrint('Error fetching data: $error');
+    }
+  }
+
   String selectedFilter =
       'Live'; // Track the selected filter and initialize with 'Live'
   DateTime selectedDate = DateTime.now(); // Track the selected date
@@ -37,52 +77,7 @@ class _HomePageState extends State<HomePage> {
     final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        titleSpacing: 0.0,
-        title: Row(
-          children: [
-            _buildDatePickerIcon(context),
-            const SizedBox(width: 8),
-            const Text(
-              'GoCric',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.yellow,
-                fontSize: 30,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.home, color: Colors.yellow,
-              size: 30,
-              //color: selectedFilter.isNotEmpty ? Colors.yellow : null,
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.favorite,
-              size: 30,
-              //color: selectedFilter.isNotEmpty ? Colors.yellow : null,
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => FavoritePage()),
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: const AppBarWidget(),
       body: SafeArea(
         child: Column(
           children: [
@@ -96,47 +91,27 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Original buildHeader method with the selectedFilter initialization
-
   Widget _buildHeader() {
-    return Row(
+    return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: Image.asset(
-            'assets/images/ground.jpg',
-            width: 378,
-            height: 178,
-          ),
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Image.asset(
+                'assets/images/ground.jpg',
+                width: 378,
+                height: 178,
+              ),
+            ),
+            //_buildDatePickerIcon(context),
+            SizedBox(
+              height: 10,
+            ),
+          ],
         ),
-        Expanded(
-          child: _buildDatePickerTextField(context),
-        ),
+        _buildDatePickerIcon(context),
       ],
-    );
-  }
-
-  Widget _buildDatePickerTextField(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        DateTime? pickedDate = await showDatePicker(
-          context: context,
-          initialDate: selectedDate,
-          firstDate: DateTime(2000),
-          lastDate: DateTime(2101),
-        );
-
-        if (pickedDate != null && pickedDate != selectedDate) {
-          setState(() {
-            selectedDate = pickedDate;
-            selectedFilter = '';
-          });
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.only(right: 20),
-        child: const Row(),
-      ),
     );
   }
 
@@ -157,11 +132,15 @@ class _HomePageState extends State<HomePage> {
           });
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Icon(
-          Icons.calendar_month_outlined,
-          size: 30,
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Icon(
+              Icons.calendar_month_outlined,
+              size: 30,
+            ),
+          ],
         ),
       ),
     );
@@ -171,9 +150,9 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _buildFilterChips(filters),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _buildSelectedDateText(),
       ],
     );
@@ -194,13 +173,16 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                   selectedFilter = filter;
                   if (filter == 'Live') {
-                    selectedDate = DateTime.now();
+                    dateText = DateTime.now().toString();
                   } else if (filter == 'Yesterday') {
-                    selectedDate = DateTime.now().subtract(Duration(days: 1));
+                    dateText = DateTime.now()
+                        .subtract(const Duration(days: 1))
+                        .toString();
                   } else if (filter == 'Today') {
-                    selectedDate = DateTime.now();
+                    dateText = DateTime.now().toString();
                   } else if (filter == 'Tomorrow') {
-                    selectedDate = DateTime.now().add(Duration(days: 1));
+                    dateText =
+                        DateTime.now().add(const Duration(days: 1)).toString();
                   }
                 });
               },
@@ -208,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor:
                     selectedFilter.toLowerCase() == filter.toLowerCase()
                         ? Colors.yellow
-                        : Color.fromARGB(255, 240, 89, 13),
+                        : const Color.fromARGB(255, 240, 89, 13),
                 side: const BorderSide(
                   color: Color.fromRGBO(245, 247, 249, 1),
                 ),
@@ -232,93 +214,112 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSelectedDateText() {
-    String dateText = '';
-
     if (selectedFilter == 'Live') {
-      dateText = 'Today, ${selectedDate.toLocal()}';
+      dateText = DateFormat('yyyyMMdd').format(selectedDate);
     } else if (selectedFilter == 'Yesterday') {
-      dateText = '${selectedDate.toLocal().subtract(Duration(days: 1))}';
+      dateText = DateFormat('yyyyMMdd')
+          .format(selectedDate.toLocal().subtract(const Duration(days: 1)));
     } else if (selectedFilter == 'Today') {
-      dateText = '${selectedDate.toLocal()}';
+      dateText = DateFormat('yyyyMMdd').format(selectedDate.toLocal());
     } else if (selectedFilter == 'Tomorrow') {
-      dateText = '${selectedDate.toLocal().add(Duration(days: 1))}';
+      dateText = DateFormat('yyyyMMdd')
+          .format(selectedDate.toLocal().add(const Duration(days: 1)));
     } else {
-      dateText = '${selectedDate.toLocal()}';
+      dateText = DateFormat('yyyyMMdd').format(selectedDate.toLocal());
     }
 
-    return const Expanded(
+    //final match = apiData['Stages'];
+
+    return Expanded(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            //for (int i = 0; i < 5; i++)
-            ProductCard(
-              team1Name: 'Sri Lanka',
-              team2Name: 'Australia',
-              team1Overs: '20',
-              team1Score: '223/5',
-              team2Overs: '11.5',
-              team2Score: '110/6',
-            ),
-            ProductCard(
-              team1Name: 'India',
-              team2Name: 'Bandgladesh',
-              team1Overs: '20',
-              team1Score: '223/5',
-              team2Overs: '11.5',
-              team2Score: '110/6',
-            ),
-            ProductCard(
-              team1Name: 'Pakisthan',
-              team2Name: 'Australia',
-              team1Overs: '20',
-              team1Score: '223/5',
-              team2Overs: '11.5',
-              team2Score: '110/6',
-            ),
-            ProductCard(
-              team1Name: 'New Zeland',
-              team2Name: 'England',
-              team1Overs: '20',
-              team1Score: '223/5',
-              team2Overs: '11.5',
-              team2Score: '110/6',
-            ),
-            ProductCard(
-              team1Name: 'South africa',
-              team2Name: 'West Indis',
-              team1Overs: '20',
-              team1Score: '223/5',
-              team2Overs: '11.5',
-              team2Score: '110/6',
-            ),
+            if (selectedFilter == 'Live') ...[
+              for (int i = 0; i < apiData['Stages'].length; i++)
+                ProductCard(
+                  team1Name: apiData['Stages'][i]['Events'][0]['T1'][0]
+                      ['Nm'], //['Nm'] for full name  or [Abr]
+                  team2Name: apiData['Stages'][i]['Events'][0]['T2'][0]
+                      ['Nm'], //['Nm'] for full name
+                  team1Overs:
+                      apiData['Stages'][i]['Events'][0]['Tr1CO2'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr1CO2']}'
+                          : apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
+                              ? '${apiData['Stages'][i]['Events'][0]['Tr1CO1']}'
+                              : '0',
+                  team1Score: apiData['Stages'][i]['Events'][0]['Tr1C2'] != null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n ${apiData['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      : apiData['Stages'][i]['Events'][0]['Tr1C1'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n '
+                          : 'yet to bat\n ',
+                  team2Overs:
+                      apiData['Stages'][i]['Events'][0]['Tr2CO2'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr2CO2']}'
+                          : apiData['Stages'][i]['Events'][0]['Tr2CO1'] != null
+                              ? '${apiData['Stages'][i]['Events'][0]['Tr2CO1']}'
+                              : '0',
+                  team2Score: apiData['Stages'][i]['Events'][0]['Tr2C2'] != null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n ${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n $dateText'
+                          : 'yet to bat\n ',
+                ),
+            ],
+            if (selectedFilter == 'Today') ...[
+              for (int i = 0; i < apiDataByDate['Stages'].length; i++)
+                ProductCard(
+                  team1Name: apiDataByDate['Stages'][i]['Events'][0]['T1'][0]
+                      ['Nm'], //['Nm'] for full name  or [Abr]
+                  team2Name: apiDataByDate['Stages'][i]['Events'][0]['T2'][0]
+                      ['Nm'], //['Nm'] for full name
+                  team1Overs: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr1CO2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO2']}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr1CO1'] !=
+                              null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO1']}'
+                          : '0',
+                  team1Score: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr1C2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n ${apiDataByDate['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'] != null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n '
+                          : 'yet to bat\n ',
+                  team2Overs: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr2CO2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO2']}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr2CO1'] !=
+                              null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO1']}'
+                          : '0',
+                  team2Score: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr2C2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n ${apiDataByDate['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'] != null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n '
+                          : 'yet to bat\n ',
+                ),
+            ],
+            if (selectedFilter == 'Tomorrow') ...[
+              Text(
+                dateText,
+                style: const TextStyle(fontSize: 18),
+              )
+            ],
+            if (selectedFilter == 'Yesterday') ...[
+              Text(
+                dateText,
+                style: const TextStyle(fontSize: 18),
+              )
+            ],
           ],
         ),
       ),
     );
-
-    // SizedBox(
-    //   height: 120,
-    //   child: ListView.builder(
-    //     itemCount: 5,
-    //     scrollDirection: Axis.horizontal,
-    //     itemBuilder: (context, index) {
-    //       final hourlyForecast = data['list'][index + 1];
-    //       final hourlySky =
-    //           data['list'][index + 1]['weather'][0]['main'];
-    //       final hourlyTemp =
-    //           hourlyForecast['main']['temp'].toString();
-
-    //       final time = DateTime.parse(hourlyForecast['dt_txt']);
-    //       return HourlyForecastItem(
-    //         time: DateFormat.Hm().format(time),
-    //         temperature: hourlyTemp,
-    //         icon: hourlySky == 'Clouds' || hourlySky == 'Rain'
-    //             ? Icons.cloud
-    //             : Icons.sunny,
-    //       );
-    //     },
-    //   ),
-    // ),
   }
 }
