@@ -7,7 +7,7 @@ import 'api_service.dart';
 import 'api_service_date.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 String dateText = '';
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             //_buildDatePickerIcon(context),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
