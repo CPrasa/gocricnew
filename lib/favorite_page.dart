@@ -11,7 +11,6 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-<<<<<<< HEAD
         title: const Text(
           'News',
           style: TextStyle(
@@ -20,9 +19,6 @@ class FavoritePage extends StatelessWidget {
             fontSize: 30,
           ),
         ),
-=======
-        title: const Text('Favorites'),
->>>>>>> new_login
         backgroundColor: Colors.red,
         actions: [
           IconButton(
@@ -51,7 +47,6 @@ class FavoritePage extends StatelessWidget {
           ),
         ],
       ),
-<<<<<<< HEAD
       body: ListView(
         children: [
           NewsCard(
@@ -62,13 +57,6 @@ class FavoritePage extends StatelessWidget {
           ),
           // Add more news cards as needed
         ],
-=======
-      body: const Center(
-        child: Text(
-          'Favorites Page Content',
-          style: TextStyle(fontSize: 20),
-        ),
->>>>>>> new_login
       ),
     );
   }

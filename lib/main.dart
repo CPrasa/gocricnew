@@ -1,11 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:gocric/firebase_options.dart';
+import 'package:gocric/firebase_options.dart';
 import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 
 import 'src/features/authentication/screens/welcome_screen.dart';
-import 'src/theme/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,8 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
-      debugShowCheckedModeBanner: false,
+      home: const WelcomeScreen(),
     );
   }
 }
