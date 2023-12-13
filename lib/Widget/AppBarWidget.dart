@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gocric/favorite_page.dart';
+import 'package:gocric/News_page.dart';
 import 'package:gocric/home_page.dart';
 import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 
