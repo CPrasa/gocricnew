@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gocric/Widget/AppBarWidget.dart';
 import 'package:gocric/card.dart';
-import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 import 'package:intl/intl.dart';
 import 'api_service.dart';
 import 'api_service_date.dart';
