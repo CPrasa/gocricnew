@@ -28,7 +28,7 @@ class ProductCard extends StatelessWidget {
         width: double.infinity,
         child: Card(
           elevation: 10,
-          shadowColor: Colors.yellow,
+          shadowColor: Colors.blueGrey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: ClipRRect(
@@ -42,25 +42,30 @@ class ProductCard extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Text(
+                      'states',
+                      textAlign: TextAlign.start,
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildTeamInfo(context, team1Name),
-                        _buildVersusText(context),
-                        _buildTeamInfo(context, team2Name),
+                        // _buildVersusText(context),
+                        _buildScoreInfo(context, team1Score, team1Overs),
                       ],
                     ),
-                    const SizedBox(height: 10),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildScoreInfo(context, team1Score, team1Overs),
-                        _buildDivider(context),
+                        _buildTeamInfo(context, team2Name),
+                        // _buildScoreInfo(context, team1Score, team1Overs),
+                        // _buildDivider(context),
                         _buildScoreInfo(context, team2Score, team2Overs),
                       ],
                     ),
+                    const Text('commentry')
                   ],
                 ),
               ),
@@ -108,42 +113,47 @@ class ProductCard extends StatelessWidget {
       children: [
         Text(
           teamName,
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ],
     );
   }
 
-  Widget _buildVersusText(BuildContext context) {
-    return Text(
-      'vs',
-      style: Theme.of(context).textTheme.titleMedium,
-    );
-  }
+  // Widget _buildVersusText(BuildContext context) {
+  //   return Text(
+  //     'vs',
+  //     style: Theme.of(context).textTheme.titleMedium,
+  //   );
+  // }
 
   Widget _buildScoreInfo(BuildContext context, String score, String overs) {
-    return Column(
-      children: [
-        Text(
-          score,
-          style: Theme.of(context).textTheme.titleMedium,
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              score,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Text(
+              '($overs)',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
         ),
-        const SizedBox(height: 5),
-        Text(
-          'Overs: $overs',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDivider(BuildContext context) {
-    return const SizedBox(
-      height: 50,
-      child: VerticalDivider(
-        color: Colors.black,
-        thickness: 1,
       ),
     );
   }
+
+  // Widget _buildDivider(BuildContext context) {
+  //   return const SizedBox(
+  //     height: 50,
+  //     child: VerticalDivider(
+  //       color: Colors.black,
+  //       thickness: 1,
+  //     ),
+  //   );
+  // }
 }
