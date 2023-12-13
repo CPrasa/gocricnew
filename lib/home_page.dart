@@ -36,6 +36,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Map<String, dynamic> apiData;
   late Map<String, dynamic> apiDataByDate;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -50,9 +51,13 @@ class _HomePageState extends State<HomePage> {
       apiData = data;
       setState(() {
         apiData = data;
+        isLoading = false;
       });
     } catch (error) {
       print('Error fetching data: $error');
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -62,15 +67,18 @@ class _HomePageState extends State<HomePage> {
       apiDataByDate = datas!;
       setState(() {
         apiDataByDate = datas;
+        isLoading = false;
       });
     } catch (error) {
       debugPrint('Error fetching data: $error');
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
-  String selectedFilter =
-      'Live'; // Track the selected filter and initialize with 'Live'
-  DateTime selectedDate = DateTime.now(); // Track the selected date
+  String selectedFilter = 'Live';
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +87,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: const AppBarWidget(),
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildHeader(),
-            Expanded(
-              child: _buildBody(filters),
-            ),
-          ],
-        ),
+        child: isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Column(
+                children: [
+                  _buildHeader(),
+                  Expanded(
+                    child: _buildBody(filters),
+                  ),
+                ],
+              ),
       ),
     );
   }
@@ -105,7 +117,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             //_buildDatePickerIcon(context),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
@@ -228,8 +240,6 @@ class _HomePageState extends State<HomePage> {
       dateText = DateFormat('yyyyMMdd').format(selectedDate.toLocal());
     }
 
-    //final match = apiData['Stages'];
-
     return Expanded(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -262,7 +272,7 @@ class _HomePageState extends State<HomePage> {
                   team2Score: apiData['Stages'][i]['Events'][0]['Tr2C2'] != null
                       ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n ${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
                       : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n $dateText'
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n '
                           : 'yet to bat\n ',
                 ),
             ],
