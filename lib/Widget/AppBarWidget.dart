@@ -54,17 +54,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        ElevatedButton.icon(
+        IconButton(
           onPressed: () {
             AuthenticationRepository.instance.logout();
           },
           icon: const Icon(
             Icons.logout,
             color: Colors.white,
-          ),
-          label: const Text(
-            'Logout',
-            style: TextStyle(color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.red,
