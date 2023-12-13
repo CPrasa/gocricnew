@@ -19,57 +19,7 @@ class ProductCard extends StatelessWidget {
     required this.team1Score,
     required this.team2Score,
   });
-/*
- * 
- * 
- * SizedBox(
-              width: double.infinity,
-              child: Card(
-                elevation: 10,
-                shadowColor: Colors.lightBlue,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 10,
-                      sigmaY: 10,
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child:Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              _buildTeamInfo(context, team1Name),
-                              _buildVersusText(context),
-                              _buildTeamInfo(context, team2Name),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              _buildScoreInfo(context, team1Score, team1Overs),
-                              _buildDivider(context),
-                              _buildScoreInfo(context, team2Score, team2Overs),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
- * 
- * 
- * 
- */
+
   @override
   Widget build(BuildContext context) {
     return Container(
