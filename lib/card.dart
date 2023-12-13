@@ -52,7 +52,6 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildTeamInfo(context, team1Name),
-                        // _buildVersusText(context),
                         _buildScoreInfo(context, team1Score, team1Overs),
                       ],
                     ),
@@ -60,8 +59,6 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildTeamInfo(context, team2Name),
-                        // _buildScoreInfo(context, team1Score, team1Overs),
-                        // _buildDivider(context),
                         _buildScoreInfo(context, team2Score, team2Overs),
                       ],
                     ),
