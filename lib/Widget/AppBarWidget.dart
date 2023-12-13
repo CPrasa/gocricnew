@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gocric/favorite_page.dart';
 import 'package:gocric/home_page.dart';
+import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({Key? key}) : super(key: key);
@@ -52,6 +53,23 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               MaterialPageRoute(builder: (context) => FavoritePage()),
             );
           },
+        ),
+        ElevatedButton.icon(
+          onPressed: () {
+            AuthenticationRepository.instance.logout();
+          },
+          icon: const Icon(
+            Icons.logout,
+            color: Colors.white,
+          ),
+          label: const Text(
+            'Logout',
+            style: TextStyle(color: Colors.white),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            elevation: 4,
+          ),
         ),
       ],
     );

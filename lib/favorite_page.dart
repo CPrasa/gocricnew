@@ -5,6 +5,8 @@ import 'home_page.dart';
 // Import the new NewsCard widget
 
 class FavoritePage extends StatelessWidget {
+  const FavoritePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
