@@ -146,13 +146,19 @@ class _HomePageState extends State<HomePage> {
           });
         }
       },
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
+      child: Container(
+        padding: const EdgeInsets.only(right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Icon(
-              Icons.calendar_month_outlined,
+            const Icon(
+              Icons.calendar_today,
               size: 30,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              "${selectedDate.toLocal()}".split(' ')[0],
+              style: const TextStyle(fontSize: 18),
             ),
           ],
         ),

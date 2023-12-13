@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  // You can replace these values with actual data
   final String team1Name;
   final String team2Name;
   final String team1Score;
   final String team2Score;
-  final String team1Overs; // Replace with actual overs data
+  final String team1Overs;
   final String team2Overs;
 
   const ProductCard({
@@ -17,7 +16,7 @@ class ProductCard extends StatelessWidget {
     required this.team2Overs,
     required this.team1Score,
     required this.team2Score,
-  }); // Replace with actual overs data
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,6 @@ class ProductCard extends StatelessWidget {
           teamName,
           style: Theme.of(context).textTheme.bodySmall,
         ),
-        // You can add an icon or additional information here if needed
       ],
     );
   }

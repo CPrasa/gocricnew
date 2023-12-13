@@ -10,7 +10,7 @@ class NewsApiService {
   static Future<Map<String, dynamic>?> fetchNews() async {
     try {
       final response = await http.get(Uri.parse(baseUrl), headers: {
-        'X-RapidAPI-Key': 'your-api-key',
+        'X-RapidAPI-Key': '4b22548360msh6e7148078d97ae8p180705jsn11d44b0880f0',
         'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com',
       });
 
