@@ -148,18 +148,17 @@ class _HomePageState extends State<HomePage> {
       },
       child: Container(
         padding: const EdgeInsets.only(right: 20),
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Icon(
+            Icon(
               Icons.calendar_today,
               size: 30,
             ),
-            const SizedBox(width: 8),
-            Text(
-              "${selectedDate.toLocal()}".split(' ')[0],
-              style: const TextStyle(fontSize: 18),
-            ),
+            // Text(
+            //   "${selectedDate.toLocal()}".split(' ')[0],
+            //   style: const TextStyle(fontSize: 18),
+            // ),
           ],
         ),
       ),
@@ -182,52 +181,61 @@ class _HomePageState extends State<HomePage> {
     return SizedBox(
       height: 50,
       child: ListView.builder(
-        itemCount: filters.length,
+        itemCount: filters.length + 1, // Add 1 for the calendar icon chip
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final filter = filters[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedFilter = filter;
-                  if (filter == 'Live') {
-                    dateText = DateTime.now().toString();
-                  } else if (filter == 'Yesterday') {
-                    dateText = DateTime.now()
-                        .subtract(const Duration(days: 1))
-                        .toString();
-                  } else if (filter == 'Today') {
-                    dateText = DateTime.now().toString();
-                  } else if (filter == 'Tomorrow') {
-                    dateText =
-                        DateTime.now().add(const Duration(days: 1)).toString();
-                  }
-                });
-              },
-              child: Chip(
-                backgroundColor:
-                    selectedFilter.toLowerCase() == filter.toLowerCase()
-                        ? Colors.yellow
-                        : const Color.fromARGB(255, 240, 89, 13),
-                side: const BorderSide(
-                  color: Color.fromRGBO(245, 247, 249, 1),
-                ),
-                label: Text(filter),
-                labelStyle: const TextStyle(
-                  fontSize: 16,
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 15,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+          if (index == filters.length) {
+            // Calendar icon chip
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: _buildDatePickerIcon(context),
+            );
+          } else {
+            final filter = filters[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedFilter = filter;
+                    if (filter == 'Live') {
+                      dateText = DateTime.now().toString();
+                    } else if (filter == 'Yesterday') {
+                      dateText = DateTime.now()
+                          .subtract(const Duration(days: 1))
+                          .toString();
+                    } else if (filter == 'Today') {
+                      dateText = DateTime.now().toString();
+                    } else if (filter == 'Tomorrow') {
+                      dateText = DateTime.now()
+                          .add(const Duration(days: 1))
+                          .toString();
+                    }
+                  });
+                },
+                child: Chip(
+                  backgroundColor:
+                      selectedFilter.toLowerCase() == filter.toLowerCase()
+                          ? Colors.yellow
+                          : const Color.fromARGB(255, 240, 89, 13),
+                  side: const BorderSide(
+                    color: Color.fromRGBO(245, 247, 249, 1),
+                  ),
+                  label: Text(filter),
+                  labelStyle: const TextStyle(
+                    fontSize: 16,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                 ),
               ),
-            ),
-          );
+            );
+          }
         },
       ),
     );
@@ -278,7 +286,7 @@ class _HomePageState extends State<HomePage> {
                               ? '${apiData['Stages'][i]['Events'][0]['Tr2CO1']}'
                               : '0',
                   team2Score: apiData['Stages'][i]['Events'][0]['Tr2C2'] != null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n ${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
                       : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
                           ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n '
                           : 'yet to bat\n ',
@@ -302,7 +310,7 @@ class _HomePageState extends State<HomePage> {
                   team1Score: apiDataByDate['Stages'][i]['Events'][0]
                               ['Tr1C2'] !=
                           null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n ${apiDataByDate['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n${apiDataByDate['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
                       : apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'] != null
                           ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n '
                           : 'yet to bat\n ',

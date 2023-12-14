@@ -71,38 +71,6 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
-
-    // Container(
-    //   margin: const EdgeInsets.all(20),
-    //   padding: const EdgeInsets.all(16.0),
-    //   decoration: BoxDecoration(
-    //     color: const Color.fromARGB(255, 157, 222, 255),
-    //     borderRadius: BorderRadius.circular(20),
-    //   ),
-    //   child: Column(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     crossAxisAlignment: CrossAxisAlignment.center,
-    //     children: [
-    //       Row(
-    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //         children: [
-    //           _buildTeamInfo(context, team1Name),
-    //           _buildVersusText(context),
-    //           _buildTeamInfo(context, team2Name),
-    //         ],
-    //       ),
-    //       const SizedBox(height: 10),
-    //       Row(
-    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //         children: [
-    //           _buildScoreInfo(context, team1Score, team1Overs),
-    //           _buildDivider(context),
-    //           _buildScoreInfo(context, team2Score, team2Overs),
-    //         ],
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
   Widget _buildTeamInfo(BuildContext context, String teamName) {
@@ -115,13 +83,6 @@ class ProductCard extends StatelessWidget {
       ],
     );
   }
-
-  // Widget _buildVersusText(BuildContext context) {
-  //   return Text(
-  //     'vs',
-  //     style: Theme.of(context).textTheme.titleMedium,
-  //   );
-  // }
 
   Widget _buildScoreInfo(BuildContext context, String score, String overs) {
     return Center(
@@ -143,14 +104,4 @@ class ProductCard extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildDivider(BuildContext context) {
-  //   return const SizedBox(
-  //     height: 50,
-  //     child: VerticalDivider(
-  //       color: Colors.black,
-  //       thickness: 1,
-  //     ),
-  //   );
-  // }
 }
