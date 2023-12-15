@@ -256,27 +256,53 @@ class _HomePageState extends State<HomePage> {
                       ['Nm'], //['Nm'] for full name  or [Abr]
                   team2Name: apiData['Stages'][i]['Events'][0]['T2'][0]
                       ['Nm'], //['Nm'] for full name
-                  team1Overs:
+                  team1Overs1:
                       apiData['Stages'][i]['Events'][0]['Tr1CO2'] != null
                           ? '${apiData['Stages'][i]['Events'][0]['Tr1CO2']}'
                           : apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
                               ? '${apiData['Stages'][i]['Events'][0]['Tr1CO1']}'
                               : '0',
-                  team1Score: apiData['Stages'][i]['Events'][0]['Tr1C2'] != null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n ${apiData['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                  team1Overs2:
+                      apiData['Stages'][i]['Events'][0]['Tr1CO2'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr1CO2']}'
+                          : apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
+                              ? '${apiData['Stages'][i]['Events'][0]['Tr1CO1']}'
+                              : '0',
+                  team1Score1: apiData['Stages'][i]['Events'][0]['Tr1C2'] !=
+                          null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
                       : apiData['Stages'][i]['Events'][0]['Tr1C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n '
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
                           : 'yet to bat\n ',
-                  team2Overs:
+                  team1Score2: apiData['Stages'][i]['Events'][0]['Tr1C2'] !=
+                          null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
+                      : apiData['Stages'][i]['Events'][0]['Tr1C1'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
+                          : 'yet to bat\n ',
+                  team2Overs1:
                       apiData['Stages'][i]['Events'][0]['Tr2CO2'] != null
                           ? '${apiData['Stages'][i]['Events'][0]['Tr2CO2']}'
                           : apiData['Stages'][i]['Events'][0]['Tr2CO1'] != null
                               ? '${apiData['Stages'][i]['Events'][0]['Tr2CO1']}'
                               : '0',
-                  team2Score: apiData['Stages'][i]['Events'][0]['Tr2C2'] != null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                  team2Score1: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
+                          null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
                       : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n '
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                          : 'yet to bat\n ',
+                  team2Score2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
+                          null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                          : 'yet to bat\n ',
+                  team2Overs2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
+                          null
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
+                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
                           : 'yet to bat\n ',
                 ),
             ],
@@ -287,7 +313,7 @@ class _HomePageState extends State<HomePage> {
                       ['Nm'], //['Nm'] for full name  or [Abr]
                   team2Name: apiDataByDate['Stages'][i]['Events'][0]['T2'][0]
                       ['Nm'], //['Nm'] for full name
-                  team1Overs: apiDataByDate['Stages'][i]['Events'][0]
+                  team1Overs1: apiDataByDate['Stages'][i]['Events'][0]
                               ['Tr1CO2'] !=
                           null
                       ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO2']}'
@@ -295,14 +321,29 @@ class _HomePageState extends State<HomePage> {
                               null
                           ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO1']}'
                           : '0',
-                  team1Score: apiDataByDate['Stages'][i]['Events'][0]
+                  team1Overs2: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr1CO2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO2']}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr1CO1'] !=
+                              null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO1']}'
+                          : '0',
+                  team1Score1: apiDataByDate['Stages'][i]['Events'][0]
                               ['Tr1C2'] !=
                           null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n${apiDataByDate['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
                       : apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'] != null
-                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}\n '
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
                           : 'yet to bat\n ',
-                  team2Overs: apiDataByDate['Stages'][i]['Events'][0]
+                  team1Score2: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr1C2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'] != null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
+                          : 'yet to bat\n ',
+                  team2Overs1: apiDataByDate['Stages'][i]['Events'][0]
                               ['Tr2CO2'] !=
                           null
                       ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO2']}'
@@ -310,12 +351,27 @@ class _HomePageState extends State<HomePage> {
                               null
                           ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO1']}'
                           : '0',
-                  team2Score: apiDataByDate['Stages'][i]['Events'][0]
+                  team2Overs2: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr2CO2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO2']}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr2CO1'] !=
+                              null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO1']}'
+                          : '0',
+                  team2Score1: apiDataByDate['Stages'][i]['Events'][0]
                               ['Tr2C2'] !=
                           null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n ${apiDataByDate['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
                       : apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'] != null
-                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}\n '
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                          : 'yet to bat\n ',
+                  team2Score2: apiDataByDate['Stages'][i]['Events'][0]
+                              ['Tr2C2'] !=
+                          null
+                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      : apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'] != null
+                          ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
                           : 'yet to bat\n ',
                 ),
             ],
