@@ -1,5 +1,7 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gocric/Widget/AppBarWidget.dart';
+import 'package:gocric/Widget/NavBar.dart';
 import 'package:gocric/card.dart';
 import 'package:intl/intl.dart';
 import 'api_service.dart';
@@ -85,7 +87,18 @@ class _HomePageState extends State<HomePage> {
     final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
 
     return Scaffold(
+      drawer: NavBar(),
       appBar: const AppBarWidget(),
+      backgroundColor: Colors.deepPurple,
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.deepPurple,
+        color: Colors.deepPurple.shade200,
+        items: [
+          Icon(Icons.home),
+          Icon(Icons.newspaper_outlined),
+          Icon(Icons.settings),
+        ],
+      ),
       body: SafeArea(
         child: isLoading
             ? const Center(
@@ -93,7 +106,8 @@ class _HomePageState extends State<HomePage> {
               )
             : Column(
                 children: [
-                  _buildHeader(),
+                  /*
+                  _buildHeader(),*/
                   Expanded(
                     child: _buildBody(filters),
                   ),
@@ -103,23 +117,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildHeader() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: Image.asset(
-            'assets/images/ground.jpg',
-            width: 378,
-            height: 178,
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
-    );
-  }
+  // Widget _buildHeader() {
+  //   return Column(
+  //     children: [
+  //       Padding(
+  //         padding: const EdgeInsets.all(5),
+  //         child: Image.asset(
+  //           'assets/images/ground.jpg',
+  //           width: 378,
+  //           height: 178,
+  //         ),
+  //       ),
+  //       const SizedBox(
+  //         height: 10,
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _buildDatePickerIcon(BuildContext context) {
     return InkWell(
@@ -144,8 +158,9 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Icon(
-              Icons.calendar_today,
-              size: 30,
+              Icons.calendar_month,
+              color: Colors.red,
+              size: 50,
             ),
           ],
         ),
@@ -204,8 +219,8 @@ class _HomePageState extends State<HomePage> {
                 child: Chip(
                   backgroundColor:
                       selectedFilter.toLowerCase() == filter.toLowerCase()
-                          ? Colors.yellow
-                          : const Color.fromARGB(255, 240, 89, 13),
+                          ? Colors.deepPurple.shade200
+                          : Colors.deepPurple.shade100,
                   side: const BorderSide(
                     color: Color.fromRGBO(245, 247, 249, 1),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gocric/Widget/NavBar.dart';
 import 'package:gocric/Widget/newscard.dart';
 import 'home_page.dart';
 import 'news_api_service.dart';
@@ -56,7 +57,7 @@ class _FavoritePageState extends State<FavoritePage> {
             fontSize: 30,
           ),
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.deepPurple.shade200,
         actions: [
           IconButton(
             icon: const Icon(
@@ -84,6 +85,7 @@ class _FavoritePageState extends State<FavoritePage> {
           ),
         ],
       ),
+      drawer: NavBar(),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),
