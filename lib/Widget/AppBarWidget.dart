@@ -22,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             'GoCric',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.yellow,
+              color: Colors.deepPurple,
               fontSize: 30,
             ),
           ),
@@ -32,7 +32,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(
             Icons.home,
-            color: Colors.yellow,
+            color: Colors.deepPurple,
             size: 30,
           ),
           onPressed: () {
@@ -63,7 +63,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.white,
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.deepPurple,
             elevation: 4,
           ),
         ),

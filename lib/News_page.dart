@@ -53,7 +53,7 @@ class _FavoritePageState extends State<FavoritePage> {
           'GoCric News',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.yellow,
+            color: Colors.deepPurple,
             fontSize: 30,
           ),
         ),
@@ -63,7 +63,6 @@ class _FavoritePageState extends State<FavoritePage> {
             icon: const Icon(
               Icons.home,
               size: 30,
-              color: Colors.black,
             ),
             onPressed: () {
               Navigator.pushReplacement(
@@ -76,7 +75,7 @@ class _FavoritePageState extends State<FavoritePage> {
             icon: const Icon(
               Icons.newspaper_rounded,
               size: 30,
-              color: Colors.yellow,
+              color: Colors.deepPurple,
             ),
             onPressed: () {
               // Add your favorite logic here
