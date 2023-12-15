@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.deepPurple.shade200,
       titleSpacing: 0.0,
       title: const Row(
         children: [
@@ -22,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             'GoCric',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.yellow,
+              color: Colors.deepPurple,
               fontSize: 30,
             ),
           ),
@@ -32,7 +32,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(
             Icons.home,
-            color: Colors.yellow,
+            color: Colors.deepPurple,
             size: 30,
           ),
           onPressed: () {
@@ -54,7 +54,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        ElevatedButton.icon(
+        IconButton(
           onPressed: () {
             AuthenticationRepository.instance.logout();
           },
@@ -62,12 +62,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             Icons.logout,
             color: Colors.white,
           ),
-          label: const Text(
-            'Logout',
-            style: TextStyle(color: Colors.white),
-          ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.deepPurple,
             elevation: 4,
           ),
         ),
