@@ -42,7 +42,7 @@ class ProductCard extends StatelessWidget {
         child: Card(
           color: Colors.deepPurple,
           elevation: 10,
-          shadowColor: Colors.blueGrey,
+          shadowColor: Colors.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: ClipRRect(
@@ -101,7 +101,7 @@ class ProductCard extends StatelessWidget {
       children: [
         Text(
           teamName,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ],
     );
@@ -119,23 +119,27 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   score1,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 Text(
                   score2,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   overs1,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(
+                  height: 6,
                 ),
                 Text(
                   overs2,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gocric/firebase_options.dart';
 import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
-
 import 'src/features/authentication/screens/welcome_screen.dart';
 
 void main() {
