@@ -5,19 +5,28 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final String team1Name;
   final String team2Name;
-  final String team1Score;
-  final String team2Score;
-  final String team1Overs;
-  final String team2Overs;
+  final String team1Score1;
+  final String team2Score1;
+  final String team1Overs1;
+  final String team2Overs1;
+
+  final String team1Score2;
+  final String team2Score2;
+  final String team1Overs2;
+  final String team2Overs2;
 
   const ProductCard({
     super.key,
     required this.team1Name,
     required this.team2Name,
-    required this.team1Overs,
-    required this.team2Overs,
-    required this.team1Score,
-    required this.team2Score,
+    required this.team1Overs1,
+    required this.team2Overs1,
+    required this.team1Score1,
+    required this.team2Score1,
+    required this.team1Overs2,
+    required this.team2Overs2,
+    required this.team1Score2,
+    required this.team2Score2,
   });
 
   @override
@@ -27,6 +36,7 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Card(
+          color: Colors.yellow,
           elevation: 10,
           shadowColor: Colors.blueGrey,
           shape:
@@ -52,14 +62,16 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildTeamInfo(context, team1Name),
-                        _buildScoreInfo(context, team1Score, team1Overs),
+                        _buildScoreInfo(context, team1Score1, team1Overs1,
+                            team1Score2, team1Overs2),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildTeamInfo(context, team2Name),
-                        _buildScoreInfo(context, team2Score, team2Overs),
+                        _buildScoreInfo(context, team2Score1, team2Overs1,
+                            team2Score2, team2Overs2),
                       ],
                     ),
                     const Text('commentry')
@@ -84,20 +96,37 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  Widget _buildScoreInfo(BuildContext context, String score, String overs) {
+  Widget _buildScoreInfo(BuildContext context, String score1, String overs1,
+      String score2, String overs2) {
     return Center(
       child: Container(
         padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              score,
-              style: Theme.of(context).textTheme.titleMedium,
+            Column(
+              children: [
+                Text(
+                  score1,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  score2,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
             ),
-            Text(
-              '($overs)',
-              style: Theme.of(context).textTheme.bodySmall,
+            Column(
+              children: [
+                Text(
+                  overs1,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                Text(
+                  overs2,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ),
           ],
         ),
