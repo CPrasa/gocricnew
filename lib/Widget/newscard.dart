@@ -14,6 +14,7 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.deepPurple.shade400,
       elevation: 4,
       margin: const EdgeInsets.all(8),
       child: Padding(
@@ -37,7 +38,7 @@ class NewsCard extends StatelessWidget {
             Text(
               'Published on: $publicationTime',
               style: TextStyle(
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
           ],
