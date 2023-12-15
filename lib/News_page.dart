@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gocric/Widget/NavBar.dart';
 import 'package:gocric/Widget/newscard.dart';
@@ -48,6 +49,7 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       appBar: AppBar(
         title: const Text(
           'GoCric News',
@@ -85,6 +87,15 @@ class _FavoritePageState extends State<FavoritePage> {
         ],
       ),
       drawer: NavBar(),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.deepPurple,
+        color: Colors.deepPurple.shade200,
+        items: [
+          Icon(Icons.home),
+          Icon(Icons.newspaper_outlined),
+          Icon(Icons.settings),
+        ],
+      ),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),
