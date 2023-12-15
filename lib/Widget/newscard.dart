@@ -23,20 +23,20 @@ class NewsCard extends StatelessWidget {
           children: [
             Text(
               headline,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               introduction,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'Published on: $publicationTime',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.grey,
               ),
             ),

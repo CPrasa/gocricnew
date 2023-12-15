@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gocric/Widget/AppBarWidget.dart';
+import 'package:gocric/Widget/NavBar.dart';
 import 'package:gocric/card.dart';
 import 'package:intl/intl.dart';
 import 'api_service.dart';
@@ -102,8 +103,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  // Original buildHeader method with the selectedFilter initialization
 
   Widget _buildHeader() {
     return Column(
