@@ -58,9 +58,13 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      status,
-                      textAlign: TextAlign.start,
+                    Row(
+                      children: [
+                        Text(
+                          status,
+                          textAlign: TextAlign.start,
+                        ),
+                      ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
