@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -15,8 +14,11 @@ class ProductCard extends StatelessWidget {
   final String team1Overs2;
   final String team2Overs2;
 
+  final String status;
+  final String commentary;
+
   const ProductCard({
-    super.key,
+    Key? key,
     required this.team1Name,
     required this.team2Name,
     required this.team1Overs1,
@@ -27,7 +29,9 @@ class ProductCard extends StatelessWidget {
     required this.team2Overs2,
     required this.team1Score2,
     required this.team2Score2,
-  });
+    required this.status,
+    required this.commentary,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +58,8 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'states',
+                    Text(
+                      status,
                       textAlign: TextAlign.start,
                     ),
                     Row(
@@ -74,7 +78,10 @@ class ProductCard extends StatelessWidget {
                             team2Score2, team2Overs2),
                       ],
                     ),
-                    const Text('commentry')
+                    Text(
+                      commentary,
+                      textAlign: TextAlign.start,
+                    ),
                   ],
                 ),
               ),
@@ -90,7 +97,7 @@ class ProductCard extends StatelessWidget {
       children: [
         Text(
           teamName,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.headline6,
         ),
       ],
     );
@@ -108,11 +115,11 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   score1,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
                   score2,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
             ),
@@ -120,11 +127,11 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   overs1,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
                   overs2,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
             ),

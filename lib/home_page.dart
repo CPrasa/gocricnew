@@ -252,58 +252,42 @@ class _HomePageState extends State<HomePage> {
             if (selectedFilter == 'Live') ...[
               for (int i = 0; i < apiData['Stages'].length; i++)
                 ProductCard(
-                  team1Name: apiData['Stages'][i]['Events'][0]['T1'][0]
-                      ['Nm'], //['Nm'] for full name  or [Abr]
-                  team2Name: apiData['Stages'][i]['Events'][0]['T2'][0]
-                      ['Nm'], //['Nm'] for full name
+                  team1Name: apiData['Stages'][i]['Events'][0]['T1'][0]['Nm'],
+                  team2Name: apiData['Stages'][i]['Events'][0]['T2'][0]['Nm'],
                   team1Overs1:
-                      apiData['Stages'][i]['Events'][0]['Tr1CO2'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr1CO2']}'
-                          : apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
-                              ? '${apiData['Stages'][i]['Events'][0]['Tr1CO1']}'
-                              : '0',
+                      apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
+                          ? '(${apiData['Stages'][i]['Events'][0]['Tr1CO1']})'
+                          : '(0.0)',
                   team1Overs2:
                       apiData['Stages'][i]['Events'][0]['Tr1CO2'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr1CO2']}'
-                          : apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
-                              ? '${apiData['Stages'][i]['Events'][0]['Tr1CO1']}'
-                              : '0',
-                  team1Score1: apiData['Stages'][i]['Events'][0]['Tr1C2'] !=
+                          ? '(${apiData['Stages'][i]['Events'][0]['Tr1CO2']})'
+                          : '',
+                  team1Score1: apiData['Stages'][i]['Events'][0]['Tr1C1'] !=
                           null
                       ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                      : apiData['Stages'][i]['Events'][0]['Tr1C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                          : 'yet to bat\n ',
+                      : 'yet to bat',
                   team1Score2: apiData['Stages'][i]['Events'][0]['Tr1C2'] !=
                           null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                      : apiData['Stages'][i]['Events'][0]['Tr1C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                          : 'yet to bat\n ',
-                  team2Overs1:
-                      apiData['Stages'][i]['Events'][0]['Tr2CO2'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr2CO2']}'
-                          : apiData['Stages'][i]['Events'][0]['Tr2CO1'] != null
-                              ? '${apiData['Stages'][i]['Events'][0]['Tr2CO1']}'
-                              : '0',
-                  team2Score1: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      : '',
+                  team2Score1: apiData['Stages'][i]['Events'][0]['Tr2C1'] !=
                           null
                       ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                          : 'yet to bat\n ',
+                      : 'yet to bat',
                   team2Score2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
                           null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                          : 'yet to bat\n ',
+                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      : '',
+                  team2Overs1:
+                      apiData['Stages'][i]['Events'][0]['Tr2CO2'] != null
+                          ? '(${apiData['Stages'][i]['Events'][0]['Tr2CO1']})'
+                          : '(0.0)',
                   team2Overs2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
                           null
                       ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : apiData['Stages'][i]['Events'][0]['Tr2C1'] != null
-                          ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                          : 'yet to bat\n ',
+                      : '',
+                  status: apiData['Stages'][i]['Events'][0]['EpsL'],
+                  commentary: apiData['Stages'][i]['Events'][0]['ECo'],
                 ),
             ],
             if (selectedFilter == 'Today') ...[
@@ -373,6 +357,8 @@ class _HomePageState extends State<HomePage> {
                       : apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'] != null
                           ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
                           : 'yet to bat\n ',
+                  status: 'ewe',
+                  commentary: 'wqew',
                 ),
             ],
             if (selectedFilter == 'Tomorrow') ...[
