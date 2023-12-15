@@ -103,28 +103,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Original buildHeader method with the selectedFilter initialization
-
   Widget _buildHeader() {
     return Column(
       children: [
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Image.asset(
-                'assets/images/ground.jpg',
-                width: 378,
-                height: 178,
-              ),
-            ),
-            //_buildDatePickerIcon(context),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: Image.asset(
+            'assets/images/ground.jpg',
+            width: 378,
+            height: 178,
+          ),
         ),
-        _buildDatePickerIcon(context),
+        const SizedBox(
+          height: 10,
+        ),
       ],
     );
   }
@@ -155,10 +147,6 @@ class _HomePageState extends State<HomePage> {
               Icons.calendar_today,
               size: 30,
             ),
-            // Text(
-            //   "${selectedDate.toLocal()}".split(' ')[0],
-            //   style: const TextStyle(fontSize: 18),
-            // ),
           ],
         ),
       ),
