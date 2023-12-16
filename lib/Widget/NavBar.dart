@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../src/features/authentication/controllers/authentication_repository.dart';
+
 class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,9 +83,11 @@ class NavBar extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            title: const Text('Exit'),
+            title: const Text('Log Out'),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: () {
+              AuthenticationRepository.instance.logout();
+            },
           ),
         ],
       ),

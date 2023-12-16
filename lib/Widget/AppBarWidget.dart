@@ -54,19 +54,19 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        IconButton(
-          onPressed: () {
-            AuthenticationRepository.instance.logout();
-          },
-          icon: const Icon(
-            Icons.logout,
-            color: Colors.white,
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.deepPurple,
-            elevation: 4,
-          ),
-        ),
+        // IconButton(
+        //   onPressed: () {
+        //     AuthenticationRepository.instance.logout();
+        //   },
+        //   icon: const Icon(
+        //     Icons.logout,
+        //     color: Colors.white,
+        //   ),
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: Colors.deepPurple,
+        //     elevation: 4,
+        //   ),
+        // ),
       ],
     );
   }
