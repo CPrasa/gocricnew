@@ -299,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                           : '(0.0)',
                   team2Overs2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
                           null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      ? '(${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
                       : '',
                   status:
                       '${apiData['Stages'][i]['Events'][0]['EtTx']} (${apiData['Stages'][i]['Events'][0]['ErnInf']})\n${apiData['Stages'][i]['Events'][0]['EpsL']}',
@@ -356,7 +356,7 @@ class _HomePageState extends State<HomePage> {
                   team2Overs2: apiDataByDate['Stages'][i]['Events'][0]
                               ['Tr2C2'] !=
                           null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      ? '(${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
                       : '',
                   status:
                       '${apiDataByDate['Stages'][i]['Events'][0]['EtTx']} (${apiDataByDate['Stages'][i]['Events'][0]['ErnInf']})\n${apiDataByDate['Stages'][i]['Events'][0]['EpsL']}',

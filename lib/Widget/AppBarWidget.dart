@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gocric/News_page.dart';
+import 'package:gocric/news_page.dart';
 import 'package:gocric/home_page.dart';
 import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 
@@ -50,7 +50,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => FavoritePage()),
+              MaterialPageRoute(builder: (context) => const NewsPage()),
             );
           },
         ),

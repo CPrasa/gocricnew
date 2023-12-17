@@ -123,7 +123,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 Text(
                   score2,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             ),
@@ -135,7 +135,7 @@ class ProductCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(
-                  height: 6,
+                  height: 5,
                 ),
                 Text(
                   overs2,

@@ -5,14 +5,14 @@ import 'package:gocric/Widget/newscard.dart';
 import 'home_page.dart';
 import 'news_api_service.dart';
 
-class FavoritePage extends StatefulWidget {
-  const FavoritePage({Key? key}) : super(key: key);
+class NewsPage extends StatefulWidget {
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
-  _FavoritePageState createState() => _FavoritePageState();
+  _NewsPageState createState() => _NewsPageState();
 }
 
-class _FavoritePageState extends State<FavoritePage> {
+class _NewsPageState extends State<NewsPage> {
   List<dynamic>? newsList; // Change the type to a nullable dynamic list
   bool isLoading = true;
 
