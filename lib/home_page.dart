@@ -98,8 +98,14 @@ class _HomePageState extends State<HomePage> {
         animationDuration: const Duration(milliseconds: 300),
         color: Colors.deepPurple.shade200,
         items: const [
-          Icon(Icons.home),
-          Icon(Icons.newspaper_outlined),
+          Icon(
+            Icons.home,
+            color: Colors.deepPurple,
+          ),
+          Icon(
+            Icons.newspaper_outlined,
+            color: Colors.deepPurple,
+          ),
         ],
         index: index,
         onTap: (selectedindex) {
@@ -118,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                   /*
                   _buildHeader(),*/
                   Expanded(
-                    child: getselectedpage(index: index),
+                    child: getselectedwidget(index: index),
 
                     // _buildBody(filters),
                   ),
@@ -128,7 +134,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget getselectedpage({required int index}) {
+  Widget getselectedwidget({required int index}) {
     final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
     Widget widget;
     switch (index) {

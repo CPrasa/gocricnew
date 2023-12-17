@@ -88,6 +88,7 @@ class NavBar extends StatelessWidget {
             onTap: () {
               AuthenticationRepository.instance.logout();
             },
+            splashColor: Colors.deepPurple,
           ),
         ],
       ),

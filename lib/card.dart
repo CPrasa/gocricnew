@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Card(
-          color: Colors.deepPurple,
+          color: Colors.deepPurple.shade500,
           elevation: 10,
           shadowColor: Colors.black,
           shape:
