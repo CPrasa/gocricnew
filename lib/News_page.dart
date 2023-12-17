@@ -50,52 +50,43 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
-      appBar: AppBar(
-        title: const Text(
-          'GoCric News',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
-            fontSize: 30,
-          ),
-        ),
-        backgroundColor: Colors.deepPurple.shade200,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.home,
-              size: 30,
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.newspaper_rounded,
-              size: 30,
-              color: Colors.deepPurple,
-            ),
-            onPressed: () {
-              // Add your favorite logic here
-              // ...
-            },
-          ),
-        ],
-      ),
-      drawer: NavBar(),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.deepPurple,
-        color: Colors.deepPurple.shade200,
-        items: [
-          Icon(Icons.home),
-          Icon(Icons.newspaper_outlined),
-          Icon(Icons.settings),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'GoCric News',
+      //     style: TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.deepPurple,
+      //       fontSize: 30,
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.deepPurple.shade200,
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(
+      //         Icons.home,
+      //         size: 30,
+      //       ),
+      //       onPressed: () {
+      //         Navigator.pushReplacement(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => const HomePage()),
+      //         );
+      //       },
+      //     ),
+      //     IconButton(
+      //       icon: const Icon(
+      //         Icons.newspaper_rounded,
+      //         size: 30,
+      //         color: Colors.deepPurple,
+      //       ),
+      //       onPressed: () {
+      //         // Add your favorite logic here
+      //         // ...
+      //       },
+      //     ),
+      //   ],
+      // ),
+      // drawer: NavBar(),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gocric/Widget/AppBarWidget.dart';
 import 'package:gocric/Widget/NavBar.dart';
 import 'package:gocric/card.dart';
+import 'package:gocric/news_page.dart';
 import 'package:intl/intl.dart';
 import 'api_service.dart';
 import 'api_service_date.dart';
@@ -82,22 +83,30 @@ class _HomePageState extends State<HomePage> {
   String selectedFilter = 'Live';
   DateTime selectedDate = DateTime.now();
 
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
-    final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
+    // final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
 
     return Scaffold(
       drawer: NavBar(),
       appBar: const AppBarWidget(),
       backgroundColor: Colors.deepPurple,
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.transparent,
+        animationDuration: const Duration(milliseconds: 300),
         color: Colors.deepPurple.shade200,
-        items: [
+        items: const [
           Icon(Icons.home),
           Icon(Icons.newspaper_outlined),
-          Icon(Icons.settings),
         ],
+        index: index,
+        onTap: (selectedindex) {
+          setState(() {
+            index = selectedindex;
+          });
+        },
       ),
       body: SafeArea(
         child: isLoading
@@ -109,7 +118,9 @@ class _HomePageState extends State<HomePage> {
                   /*
                   _buildHeader(),*/
                   Expanded(
-                    child: _buildBody(filters),
+                    child: getselectedpage(index: index),
+
+                    // _buildBody(filters),
                   ),
                 ],
               ),
@@ -117,6 +128,22 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget getselectedpage({required int index}) {
+    final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
+    Widget widget;
+    switch (index) {
+      case 0:
+        widget = _buildBody(filters);
+        break;
+      case 1:
+        widget = const NewsPage();
+        break;
+      default:
+        widget = _buildBody(filters);
+        break;
+    }
+    return widget;
+  }
   // Widget _buildHeader() {
   //   return Column(
   //     children: [
