@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.deepPurple,
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
-        animationDuration: const Duration(milliseconds: 300),
+        animationDuration: const Duration(milliseconds: 400),
         color: Colors.deepPurple.shade200,
         items: const [
           Icon(
