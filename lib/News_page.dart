@@ -1,8 +1,5 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gocric/Widget/NavBar.dart';
 import 'package:gocric/Widget/newscard.dart';
-import 'home_page.dart';
 import 'news_api_service.dart';
 
 class NewsPage extends StatefulWidget {

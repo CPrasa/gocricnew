@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gocric/news_page.dart';
-import 'package:gocric/home_page.dart';
-import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({Key? key}) : super(key: key);

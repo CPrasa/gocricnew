@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gocric/Widget/AppBarWidget.dart';
-import 'package:gocric/Widget/NavBar.dart';
+import 'package:gocric/Widget/appBarWidget.dart';
+import 'package:gocric/Widget/navbar.dart';
 import 'package:gocric/card.dart';
 import 'package:gocric/news_page.dart';
 import 'package:intl/intl.dart';
