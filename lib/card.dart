@@ -97,13 +97,19 @@ class ProductCard extends StatelessWidget {
   }
 
   Widget _buildTeamInfo(BuildContext context, String teamName) {
-    return Column(
-      children: [
-        Text(
-          teamName,
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-      ],
+    return Container(
+      width: 250,
+      alignment: Alignment.centerLeft,
+      child: Column(
+        children: [
+          Text(
+            teamName,
+            style: Theme.of(context).textTheme.headlineSmall,
+            textAlign: TextAlign.start,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 
