@@ -7,6 +7,8 @@ import 'package:gocric/news_page.dart';
 import 'package:intl/intl.dart';
 import 'api_service.dart';
 import 'api_service_date.dart';
+import 'api_service_yesterday.dart';
+import 'api_service_tomorrow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +41,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Map<String, dynamic> apiData;
   late Map<String, dynamic> apiDataByDate;
+  late Map<String, dynamic> apiDataYesterday;
+  late Map<String, dynamic> apiDataTomorrow;
   bool isLoading = true;
 
   @override
@@ -46,6 +50,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     fetchData();
     fetchDataDate();
+    fetchDataYesterday();
+    fetchDataTomorrow();
   }
 
   Future<void> fetchData() async {
@@ -70,6 +76,38 @@ class _HomePageState extends State<HomePage> {
       apiDataByDate = datas!;
       setState(() {
         apiDataByDate = datas;
+        isLoading = false;
+      });
+    } catch (error) {
+      debugPrint('Error fetching data: $error');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  Future<void> fetchDataYesterday() async {
+    try {
+      final data1 = await ApiServiceYesterday.fetchDataYesterday();
+      apiDataYesterday = data1!;
+      setState(() {
+        apiDataYesterday = data1;
+        isLoading = false;
+      });
+    } catch (error) {
+      debugPrint('Error fetching data: $error');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  Future<void> fetchDataTomorrow() async {
+    try {
+      final data2 = await ApiServiceTomorrow.fetchDataTomorrow();
+      apiDataTomorrow = data2!;
+      setState(() {
+        apiDataTomorrow = data2;
         isLoading = false;
       });
     } catch (error) {
@@ -397,16 +435,116 @@ class _HomePageState extends State<HomePage> {
                 ),
             ],
             if (selectedFilter == 'Tomorrow') ...[
-              Text(
-                dateText,
-                style: const TextStyle(fontSize: 18),
-              )
+              // Text(
+              //   dateText,
+              //   style: const TextStyle(fontSize: 18),
+              // ),
+              for (int i = 0; i < apiDataTomorrow['Stages'].length; i++)
+                ProductCard(
+                  team1Name: apiDataTomorrow['Stages'][i]['Events'][0]['T1'][0]
+                      ['Nm'],
+                  team2Name: apiDataTomorrow['Stages'][i]['Events'][0]['T2'][0]
+                      ['Nm'],
+                  team1Overs1: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr1CO1'] !=
+                          null
+                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CO1']})'
+                      : '',
+                  team1Overs2: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr1CO2'] !=
+                          null
+                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CO2']})'
+                      : '',
+                  team1Score1: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr1C1'] !=
+                          null
+                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
+                      : 'yet to bat',
+                  team1Score2: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr1C2'] !=
+                          null
+                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      : '',
+                  team2Score1: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr2C1'] !=
+                          null
+                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      : 'yet to bat',
+                  team2Score2: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr2C2'] !=
+                          null
+                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      : '',
+                  team2Overs1: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr2CO1'] !=
+                          null
+                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CO1']})'
+                      : '(0.0)',
+                  team2Overs2: apiDataTomorrow['Stages'][i]['Events'][0]
+                              ['Tr2C2'] !=
+                          null
+                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
+                      : '',
+                  status:
+                      '${apiDataTomorrow['Stages'][i]['Events'][0]['EtTx']} (${apiDataTomorrow['Stages'][i]['Events'][0]['ErnInf']})\n${apiDataTomorrow['Stages'][i]['Events'][0]['EpsL']}',
+                  commentary: apiDataTomorrow['Stages'][i]['Events'][0]['ECo'],
+                ),
             ],
             if (selectedFilter == 'Yesterday') ...[
-              Text(
-                dateText,
-                style: const TextStyle(fontSize: 18),
-              )
+              // Text(
+              //   dateText,
+              //   style: const TextStyle(fontSize: 18),
+              // ),
+              for (int i = 0; i < apiDataYesterday['Stages'].length; i++)
+                ProductCard(
+                  team1Name: apiDataYesterday['Stages'][i]['Events'][0]['T1'][0]
+                      ['Nm'],
+                  team2Name: apiDataYesterday['Stages'][i]['Events'][0]['T2'][0]
+                      ['Nm'],
+                  team1Overs1: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr1CO1'] !=
+                          null
+                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CO1']})'
+                      : '',
+                  team1Overs2: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr1CO2'] !=
+                          null
+                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CO2']})'
+                      : '',
+                  team1Score1: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr1C1'] !=
+                          null
+                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
+                      : 'yet to bat',
+                  team1Score2: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr1C2'] !=
+                          null
+                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
+                      : '',
+                  team2Score1: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr2C1'] !=
+                          null
+                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
+                      : 'yet to bat',
+                  team2Score2: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr2C2'] !=
+                          null
+                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
+                      : '',
+                  team2Overs1: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr2CO1'] !=
+                          null
+                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CO1']})'
+                      : '(0.0)',
+                  team2Overs2: apiDataYesterday['Stages'][i]['Events'][0]
+                              ['Tr2C2'] !=
+                          null
+                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
+                      : '',
+                  status:
+                      '${apiDataYesterday['Stages'][i]['Events'][0]['EtTx']} (${apiDataYesterday['Stages'][i]['Events'][0]['ErnInf']})\n${apiDataYesterday['Stages'][i]['Events'][0]['EpsL']}',
+                  commentary: apiDataYesterday['Stages'][i]['Events'][0]['ECo'],
+                ),
             ],
           ],
         ),

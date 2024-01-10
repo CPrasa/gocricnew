@@ -1,27 +1,21 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-// final String date = dateText;
-
-class ApiServicedate {
-  static Future<Map<String, dynamic>?> fetchDataDate() async {
-    //String date = '$dateText';
+class ApiServiceTomorrow {
+  static Future<Map<String, dynamic>?> fetchDataTomorrow() async {
     String datelist = 'list-by-date';
     final String apiUrl =
         'https://livescore6.p.rapidapi.com/matches/v2/$datelist';
 
     final Map<String, String> headers = {
-      // 'X-RapidAPI-Key': 'cec61bf002mshae792f4044c9c8bp1fb688jsnfe5dfb44071c',
       'X-RapidAPI-Key': '889b3cc290msh3a6002ff66b137dp1c409bjsn0d6ab11fc890',
-      //'X-RapidAPI-Key': '4b22548360msh6e7148078d97ae8p180705jsn11d44b0880f0',
-      //'X-RapidAPI-Key': 'cec61bf002mshae792f4044c9c8bp1fb688jsnfe5dfb44071c',
       'X-RapidAPI-Host': 'livescore6.p.rapidapi.com',
     };
 
     final Map<String, String> params = {
       'Category': 'cricket',
       'Timezone': '-7',
-      'Date': _getCurrentDate(),
+      'Date': _getTomorrowDate(),
     };
 
     final Uri uri = Uri.parse(apiUrl).replace(queryParameters: params);
@@ -36,17 +30,15 @@ class ApiServicedate {
     }
   }
 
-  static String _getCurrentDate() {
-    // Get the current date in the format needed for the API call
-    DateTime currentDate = DateTime.now();
+  static String _getTomorrowDate() {
+    // Get tomorrow's date in the format needed for the API call
+    DateTime tomorrow = DateTime.now().add(Duration(days: 1));
     String formattedDate =
-        '${currentDate.year}${_formatTwoDigits(currentDate.month)}${_formatTwoDigits(currentDate.day)}';
+        '${tomorrow.year}${_formatTwoDigits(tomorrow.month)}${_formatTwoDigits(tomorrow.day)}';
     return formattedDate;
   }
 
   static String _formatTwoDigits(int number) {
     return number.toString().padLeft(2, '0');
   }
-
-  static fetchDataYesterday() {}
 }
