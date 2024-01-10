@@ -5,10 +5,10 @@ import 'package:gocric/Widget/navbar.dart';
 import 'package:gocric/card.dart';
 import 'package:gocric/news_page.dart';
 import 'package:intl/intl.dart';
-import 'api_service.dart';
-import 'api_service_date.dart';
-import 'api_service_yesterday.dart';
-import 'api_service_tomorrow.dart';
+import 'API Services/api_service.dart';
+import 'API Services/api_service_date.dart';
+import 'API Services/api_service_yesterday.dart';
+import 'API Services/api_service_tomorrow.dart';
 
 void main() {
   runApp(const MyApp());
