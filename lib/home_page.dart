@@ -230,8 +230,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             Icon(
               Icons.calendar_month,
-              color: Color.fromARGB(255, 184, 152, 240),
-              size: 50,
+              color: Color.fromARGB(255, 255, 255, 255),
+              size: 40,
             ),
           ],
         ),
