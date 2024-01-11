@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 // final String date = dateText;
 
 class ApiServicedate {
-  static Future<Map<String, dynamic>?> fetchDataDate() async {
+  static Future<Map<String, dynamic>?> fetchDataDate(
+      {String? dateName, formtedDate}) async {
     //String date = '$dateText';
     String datelist = 'list-by-date';
     final String apiUrl =
