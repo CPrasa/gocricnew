@@ -16,6 +16,22 @@ class _NewsPageState extends State<NewsPage> {
   bool isLoading = true;
   int activeIndex = 0;
 
+  List<String> carouselImages = [
+    'assets/images/image_0.jpg',
+    'assets/images/image_1.jpg',
+    'assets/images/image_2.jpg',
+    'assets/images/image_3.jpg',
+    'assets/images/image_4.jpg',
+  ];
+
+  List<String> carouselNames = [
+    'News Headline 0',
+    'News Headline 1',
+    'News Headline 2',
+    'News Headline 3',
+    'News Headline 4',
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -63,10 +79,10 @@ class _NewsPageState extends State<NewsPage> {
                       return Column(
                         children: [
                           CarouselSlider.builder(
-                            itemCount: 5,
+                            itemCount: carouselImages.length,
                             itemBuilder: (context, index, realIndex) {
-                              String image = '../assets/image_$index.jpg';
-                              String name = 'News Headline $index';
+                              String image = carouselImages[index];
+                              String name = carouselNames[index];
                               return buildCarouselItem(image, name);
                             },
                             options: CarouselOptions(
