@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:gocric/Widget/newscard.dart';
 import 'news_api_service.dart';
@@ -66,7 +65,7 @@ class _NewsPageState extends State<NewsPage> {
                           CarouselSlider.builder(
                             itemCount: 5,
                             itemBuilder: (context, index, realIndex) {
-                              String image = 'assets/image_$index.jpg';
+                              String image = '../assets/image_$index.jpg';
                               String name = 'News Headline $index';
                               return buildCarouselItem(image, name);
                             },
@@ -82,9 +81,9 @@ class _NewsPageState extends State<NewsPage> {
                               },
                             ),
                           ),
-                          SizedBox(height: 30.0),
+                          const SizedBox(height: 30.0),
                           Center(child: buildIndicator()),
-                          SizedBox(height: 30.0),
+                          const SizedBox(height: 30.0),
                         ],
                       );
                     }
@@ -109,7 +108,7 @@ class _NewsPageState extends State<NewsPage> {
   }
 
   Widget buildCarouselItem(String image, String name) => Container(
-        margin: EdgeInsets.symmetric(horizontal: 5.0),
+        margin: const EdgeInsets.symmetric(horizontal: 5.0),
         child: Stack(
           children: [
             ClipRRect(
@@ -123,10 +122,10 @@ class _NewsPageState extends State<NewsPage> {
             ),
             Container(
               height: 250,
-              padding: EdgeInsets.only(left: 10.0),
-              margin: EdgeInsets.only(top: 170.0),
+              padding: const EdgeInsets.only(left: 10.0),
+              margin: const EdgeInsets.only(top: 170.0),
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black45,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(10),
@@ -137,7 +136,7 @@ class _NewsPageState extends State<NewsPage> {
                 child: Text(
                   name,
                   maxLines: 2,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -152,7 +151,7 @@ class _NewsPageState extends State<NewsPage> {
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: 5,
-        effect: SlideEffect(
+        effect: const SlideEffect(
           dotWidth: 15,
           dotHeight: 15,
           activeDotColor: Colors.blue,
