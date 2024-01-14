@@ -25,11 +25,11 @@ class _NewsPageState extends State<NewsPage> {
   ];
 
   List<String> carouselNames = [
-    'News Headline 0',
-    'News Headline 1',
-    'News Headline 2',
-    'News Headline 3',
-    'News Headline 4',
+    'Asia Cup Champions 2019',
+    'World Cup Champions 2020',
+    'Asia Cup Champions 2021',
+    'Asia Cup Champions 2022',
+    'World Cup Champions 2023',
   ];
 
   @override
@@ -48,7 +48,6 @@ class _NewsPageState extends State<NewsPage> {
           isLoading = false;
         });
       } else {
-        // Handle null or empty response
         print('News data is null or empty');
         setState(() {
           isLoading = false;
@@ -75,9 +74,9 @@ class _NewsPageState extends State<NewsPage> {
                   itemCount: newsList!.length + 1,
                   itemBuilder: (context, index) {
                     if (index == 0) {
-                      // Carousel Slider
                       return Column(
                         children: [
+                          const SizedBox(height: 15),
                           CarouselSlider.builder(
                             itemCount: carouselImages.length,
                             itemBuilder: (context, index, realIndex) {
@@ -97,14 +96,13 @@ class _NewsPageState extends State<NewsPage> {
                               },
                             ),
                           ),
-                          const SizedBox(height: 30.0),
+                          const SizedBox(height: 15),
                           Center(child: buildIndicator()),
-                          const SizedBox(height: 30.0),
+                          const SizedBox(height: 10),
                         ],
                       );
                     }
 
-                    // Regular News Card
                     final news = newsList![index - 1]['story'];
                     if (news != null) {
                       return NewsCard(
