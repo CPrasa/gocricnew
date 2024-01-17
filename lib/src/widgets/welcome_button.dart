@@ -20,20 +20,21 @@ class WelcomeButton extends StatelessWidget {
         );
       },
       child: Container(
-        padding: const EdgeInsets.all(30.0),
-        decoration: BoxDecoration(
-          color: color!,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(50),
+        margin: const EdgeInsets.all(10),
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            color: color!,
+            borderRadius: BorderRadius.circular(20),
           ),
-        ),
-        child: Text(
-          buttonText!,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: textColor!,
+          child: Text(
+            buttonText!,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: textColor!,
+            ),
           ),
         ),
       ),

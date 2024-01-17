@@ -22,46 +22,60 @@ class WelcomeScreen extends StatelessWidget {
                   horizontal: 40.0,
                 ),
                 child: Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      children: [
-                        TextSpan(
-                            text: 'Welcome Back!\n',
-                            style: TextStyle(
-                              fontSize: 45.0,
-                              fontWeight: FontWeight.w600,
-                            )),
-                        TextSpan(
-                            text: '\nFor cricket lovers',
-                            style: TextStyle(
-                              fontSize: 20,
-                            ))
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 60),
+                        child: Image.asset(
+                          'assets/logo/logo.png',
+                          height: 80.0,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 150,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Welcome Back!\n',
+                                style: TextStyle(
+                                  fontSize: 45.0,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                            TextSpan(
+                                text: '\nFor cricket lovers',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ))
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               )),
-          Flexible(
+          const Flexible(
             flex: 1,
             child: Align(
               alignment: Alignment.bottomRight,
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: WelcomeButton(
                       buttonText: 'LOG IN',
                       onTap: SignInScreen(),
-                      color: Colors.transparent,
-                      textColor: Colors.white,
+                      color: Colors.white,
+                      textColor: Colors.black,
                     ),
                   ),
                   Expanded(
                     child: WelcomeButton(
                       buttonText: 'SIGN UP',
-                      onTap: const SignUpScreen(),
-                      color: Colors.white,
-                      textColor: lightColorScheme.primary,
+                      onTap: SignUpScreen(),
+                      color: Colors.blue,
+                      textColor: Colors.white,
                     ),
                   ),
                 ],
