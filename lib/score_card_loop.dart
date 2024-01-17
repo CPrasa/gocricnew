@@ -29,7 +29,7 @@ class CustomProductCard extends StatelessWidget {
           ? '${eventData['Tr2C2'].toString()}/${eventData['Tr2CW2'].toString()}'
           : '',
       team2Overs1:
-          eventData['Tr2CO1'] != null ? '(${eventData['Tr2CO1']})' : '(0.0)',
+          eventData['Tr2CO1'] != null ? '(${eventData['Tr2CO1']})' : '',
       team2Overs2: eventData['Tr2C2'] != null
           ? '(${eventData['Tr2C1'].toString()}/${eventData['Tr2CW1'].toString()})'
           : '',

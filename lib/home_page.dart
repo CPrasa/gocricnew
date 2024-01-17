@@ -87,12 +87,48 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  // void handleUserInput(String datedate) {
+  //   // Update the $dateText variable
+  //   setState(() {
+  //     dateText = datedate;
+  //   });
+
+  //   // Call fetchDataYesterday with the updated date
+  //   fetchDataYesterday();
+  // }
+
+  // Future<void> fetchDataYesterday() async {
+  //   try {
+  //     String dateName = '$dateText';
+
+  //     final data1 = await ApiServiceYesterday.fetchDataYesterday(
+  //       dateName: dateName,
+  //     );
+
+  //     setState(() {
+  //       apiDataYesterday = data1!;
+  //       isLoading = false;
+  //     });
+  //   } catch (error) {
+  //     debugPrint('Error fetching data: $error');
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
+
   Future<void> fetchDataYesterday() async {
     try {
-      final data1 = await ApiServiceYesterday.fetchDataYesterday();
-      apiDataYesterday = data1!;
+      //String dateName = '$dateText';
+      //String formtedDate = "your_formatted_date_value";
+
+      final data1 = await ApiServiceYesterday.fetchDataYesterday(
+          //dateName: dateName,
+          //formtedDate: formtedDate,
+          );
+
       setState(() {
-        apiDataYesterday = data1;
+        apiDataYesterday = data1!;
         isLoading = false;
       });
     } catch (error) {
@@ -301,18 +337,23 @@ class _HomePageState extends State<HomePage> {
             if (selectedFilter == 'Live') ...[
               for (int i = 0; i < apiData['Stages'].length; i++)
                 CustomProductCard(eventData: apiData['Stages'][i]['Events'][0]),
-            ],
-            if (selectedFilter == 'Today') ...[
+            ] else if (selectedFilter == 'Today') ...[
               for (int i = 0; i < apiDataByDate['Stages'].length; i++)
                 CustomProductCard(
                     eventData: apiDataByDate['Stages'][i]['Events'][0]),
-            ],
-            if (selectedFilter == 'Tomorrow') ...[
+            ] else if (selectedFilter == 'Tomorrow') ...[
               for (int i = 0; i < apiDataTomorrow['Stages'].length; i++)
                 CustomProductCard(
                     eventData: apiDataTomorrow['Stages'][i]['Events'][0]),
-            ],
-            if (selectedFilter == 'Yesterday') ...[
+            ] else if (selectedFilter == 'Yesterday') ...[
+              for (int i = 0; i < apiDataYesterday['Stages'].length; i++)
+                CustomProductCard(
+                    eventData: apiDataYesterday['Stages'][i]['Events'][0]),
+            ] else ...[
+              Text(
+                dateText,
+                style: const TextStyle(fontSize: 18),
+              ),
               for (int i = 0; i < apiDataYesterday['Stages'].length; i++)
                 CustomProductCard(
                     eventData: apiDataYesterday['Stages'][i]['Events'][0]),
