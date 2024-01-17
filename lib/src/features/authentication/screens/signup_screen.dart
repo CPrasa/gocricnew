@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gocric/models/user_model.dart';
 import 'package:gocric/src/features/authentication/controllers/signup_controller.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -209,6 +210,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   content: Text('Processing Data'),
                                 ),
                               );
+                              final user = UserModel(
+                                fullName: controller.fullName.text.trim(),
+                                email: controller.email.text.trim(),
+                                password: controller.password.text.trim(),
+                              );
+                              SignUpController.instance.createUser(user);
                               SignUpController.instance.registerUser(
                                   controller.email.text.trim(),
                                   controller.password.text.trim());

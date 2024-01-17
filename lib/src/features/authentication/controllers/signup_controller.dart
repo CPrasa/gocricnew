@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gocric/models/user_model.dart';
 import 'package:gocric/src/features/authentication/controllers/authentication_repository.dart';
+import 'package:gocric/src/features/authentication/controllers/user_repository.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
@@ -9,6 +11,8 @@ class SignUpController extends GetxController {
   final password = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
+
+  final userRepo = Get.put(UserRepository());
 
   @override
   void dispose() {
@@ -30,5 +34,9 @@ class SignUpController extends GetxController {
         message: result.toString(),
       ));
     }
+  }
+
+  Future<void> createUser(UserModel user) async {
+    await userRepo.createUser(user);
   }
 }
