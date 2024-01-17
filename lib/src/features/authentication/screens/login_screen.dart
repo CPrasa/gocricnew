@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gocric/src/features/authentication/controllers/login_controller.dart';
 import 'package:icons_plus/icons_plus.dart';
-import '../../../theme/theme.dart';
 import '../../../widgets/custom_scaffold.dart';
 import 'signup_screen.dart';
 
@@ -127,7 +126,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
-                                side: const BorderSide(color: Colors.black),
                               ),
                             ),
                             backgroundColor: MaterialStateProperty.all<Color>(
@@ -147,6 +145,41 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
+                      // sign up divider
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              thickness: 0.7,
+                              color: Colors.grey.withOpacity(0.5),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 0,
+                              horizontal: 10,
+                            ),
+                            child: Text(
+                              'OR',
+                              style: TextStyle(
+                                color: Colors.black45,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              thickness: 0.7,
+                              color: Colors.grey.withOpacity(0.5),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(
+                        height: 25.0,
+                      ),
+
                       // sign up google
                       ElevatedButton(
                         onPressed: () {},
@@ -202,11 +235,11 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign up',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: lightColorScheme.primary,
+                                color: Colors.blue,
                               ),
                             ),
                           ),

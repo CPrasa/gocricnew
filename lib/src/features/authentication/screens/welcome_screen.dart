@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme.dart';
 import '../../../widgets/custom_scaffold.dart';
 import '../../../widgets/welcome_button.dart';
 import 'login_screen.dart';
