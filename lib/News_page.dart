@@ -5,7 +5,7 @@ import 'package:gocric/Widget/newscard.dart';
 import 'news_api_service.dart';
 
 class NewsPage extends StatefulWidget {
-  const NewsPage({Key? key}) : super(key: key);
+  const NewsPage({super.key});
 
   @override
   _NewsPageState createState() => _NewsPageState();

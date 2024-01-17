@@ -17,7 +17,7 @@ void main() {
 String dateText = '';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
     // final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
 
     return Scaffold(
-      drawer: NavBar(),
+      drawer: const NavBar(),
       appBar: const AppBarWidget(),
       backgroundColor: Colors.deepPurple,
       bottomNavigationBar: CurvedNavigationBar(

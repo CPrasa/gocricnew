@@ -32,7 +32,7 @@ class ApiServiceTomorrow {
 
   static String _getTomorrowDate() {
     // Get tomorrow's date in the format needed for the API call
-    DateTime tomorrow = DateTime.now().add(Duration(days: 1));
+    DateTime tomorrow = DateTime.now().add(const Duration(days: 1));
     String formattedDate =
         '${tomorrow.year}${_formatTwoDigits(tomorrow.month)}${_formatTwoDigits(tomorrow.day)}';
     return formattedDate;

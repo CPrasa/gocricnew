@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
   final String commentary;
 
   const ProductCard({
-    Key? key,
+    super.key,
     required this.team1Name,
     required this.team2Name,
     required this.team1Overs1,
@@ -31,7 +31,7 @@ class ProductCard extends StatelessWidget {
     required this.team2Score2,
     required this.status,
     required this.commentary,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

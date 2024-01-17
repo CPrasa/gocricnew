@@ -32,7 +32,7 @@ class ApiServiceYesterday {
 
   static String _getYesterdayDate() {
     // Get yesterday's date in the format needed for the API call
-    DateTime yesterday = DateTime.now().subtract(Duration(days: 1));
+    DateTime yesterday = DateTime.now().subtract(const Duration(days: 1));
     String formattedDate =
         '${yesterday.year}${_formatTwoDigits(yesterday.month)}${_formatTwoDigits(yesterday.day)}';
     return formattedDate;

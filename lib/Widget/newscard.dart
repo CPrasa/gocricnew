@@ -5,7 +5,7 @@ class NewsCard extends StatelessWidget {
   final String introduction;
   final String publicationTime;
 
-  NewsCard({
+  const NewsCard({super.key, 
     required this.headline,
     required this.introduction,
     required this.publicationTime,
@@ -37,7 +37,7 @@ class NewsCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Published on: $publicationTime',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
             ),

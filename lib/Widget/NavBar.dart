@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../src/features/authentication/controllers/authentication_repository.dart';
 
 class NavBar extends StatelessWidget {
+  const NavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -34,12 +36,12 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('Favorites'),
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Friends'),
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.share),
@@ -74,12 +76,12 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.description),
             title: const Text('Policies'),
-            onTap: () => null,
+            onTap: () {},
           ),
           const Divider(),
           ListTile(
