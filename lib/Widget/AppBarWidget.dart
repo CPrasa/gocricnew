@@ -13,7 +13,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0.0,
       title: const Row(
         children: [
-          // You can customize the contents of your AppBar as needed
           SizedBox(width: 8),
           Text(
             'GoCric',
