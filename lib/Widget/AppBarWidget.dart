@@ -9,7 +9,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.deepPurple.shade200,
+      backgroundColor: Colors.blue,
       titleSpacing: 0.0,
       title: const Row(
         children: [
@@ -19,7 +19,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             'GoCric',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
+              color: Colors.white,
               fontSize: 30,
             ),
           ),

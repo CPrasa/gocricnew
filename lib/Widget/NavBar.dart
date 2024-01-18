@@ -17,7 +17,7 @@ class NavBar extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               UserAccountsDrawerHeader(
-                accountName: const Text('Oflutter.com'),
+                accountName: const Text('User Email Address'),
                 accountEmail: Text(user.email!),
                 currentAccountPicture: CircleAvatar(
                   child: ClipOval(
@@ -30,23 +30,13 @@ class NavBar extends StatelessWidget {
                   ),
                 ),
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.grey,
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: NetworkImage(
                         'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg'),
                   ),
                 ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.favorite),
-                title: const Text('Favorites'),
-                onTap: () => null,
-              ),
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Friends'),
-                onTap: () => null,
               ),
               ListTile(
                 leading: const Icon(Icons.share),
@@ -72,29 +62,13 @@ class NavBar extends StatelessWidget {
                   );
                 },
               ),
-              const ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('Request'),
-              ),
-              const Divider(),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                onTap: () => null,
-              ),
-              ListTile(
-                leading: const Icon(Icons.description),
-                title: const Text('Policies'),
-                onTap: () => null,
-              ),
-              const Divider(),
               ListTile(
                 title: const Text('Log Out'),
                 leading: const Icon(Icons.exit_to_app),
                 onTap: () {
                   AuthenticationRepository.instance.logout();
                 },
-                splashColor: Colors.deepPurple,
+                splashColor: Colors.blue,
               ),
             ],
           ),
