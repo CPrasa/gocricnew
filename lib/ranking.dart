@@ -11,7 +11,8 @@ class ApiServiceRank {
     final Uri url = Uri.parse(baseUrl);
 
     final Map<String, String> headers = {
-      'X-RapidAPI-Key': '4b22548360msh6e7148078d97ae8p180705jsn11d44b0880f0',
+      //'X-RapidAPI-Key': '4b22548360msh6e7148078d97ae8p180705jsn11d44b0880f0',
+      'X-RapidAPI-Key': 'cec61bf002mshae792f4044c9c8bp1fb688jsnfe5dfb44071c',
       'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com',
     };
 
