@@ -64,7 +64,7 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.blue.shade200,
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),

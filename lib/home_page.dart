@@ -9,7 +9,6 @@ import 'API Services/api_service.dart';
 import 'API Services/api_service_date.dart';
 import 'API Services/api_service_yesterday.dart';
 import 'API Services/api_service_tomorrow.dart';
-import 'Widget/calender.dart';
 import 'package:gocric/score_card_loop.dart';
 
 void main() {
@@ -25,7 +24,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'GoCric',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const HomePage(),
@@ -88,45 +86,9 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  // void handleUserInput(String datedate) {
-  //   // Update the $dateText variable
-  //   setState(() {
-  //     dateText = datedate;
-  //   });
-
-  //   // Call fetchDataYesterday with the updated date
-  //   fetchDataYesterday();
-  // }
-
-  // Future<void> fetchDataYesterday() async {
-  //   try {
-  //     String dateName = '$dateText';
-
-  //     final data1 = await ApiServiceYesterday.fetchDataYesterday(
-  //       dateName: dateName,
-  //     );
-
-  //     setState(() {
-  //       apiDataYesterday = data1!;
-  //       isLoading = false;
-  //     });
-  //   } catch (error) {
-  //     debugPrint('Error fetching data: $error');
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   }
-  // }
-
   Future<void> fetchDataYesterday() async {
     try {
-      //String dateName = '$dateText';
-      //String formtedDate = "your_formatted_date_value";
-
-      final data1 = await ApiServiceYesterday.fetchDataYesterday(
-          //dateName: dateName,
-          //formtedDate: formtedDate,
-          );
+      final data1 = await ApiServiceYesterday.fetchDataYesterday();
 
       setState(() {
         apiDataYesterday = data1!;
@@ -168,23 +130,23 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: NavBar(),
       appBar: const AppBarWidget(),
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.blue.shade200,
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         animationDuration: const Duration(milliseconds: 400),
-        color: Colors.deepPurple.shade200,
+        color: Colors.black,
         items: const [
           Icon(
             Icons.home,
-            color: Colors.deepPurple,
+            color: Colors.blue,
           ),
           Icon(
             Icons.newspaper_outlined,
-            color: Colors.deepPurple,
+            color: Colors.blue,
           ),
           Icon(
             Icons.sports_cricket,
-            color: Colors.deepPurple,
+            color: Colors.blue,
           ),
         ],
         index: index,
@@ -234,18 +196,6 @@ class _HomePageState extends State<HomePage> {
     return widget;
   }
 
-  Widget _buildDatePickerIcon(BuildContext context) {
-    return CalendarWidget(
-      selectedDate: selectedDate,
-      onDateSelected: (pickedDate) {
-        setState(() {
-          selectedDate = pickedDate;
-          selectedFilter = '';
-        });
-      },
-    );
-  }
-
   Widget _buildBody(List<String> filters) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -267,9 +217,9 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           if (index == filters.length) {
             // Calendar icon chip
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: _buildDatePickerIcon(context),
+            return const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              // child: _buildDatePickerIcon(context),
             );
           } else {
             final filter = filters[index];
@@ -297,10 +247,10 @@ class _HomePageState extends State<HomePage> {
                 child: Chip(
                   backgroundColor:
                       selectedFilter.toLowerCase() == filter.toLowerCase()
-                          ? Colors.deepPurple.shade500
-                          : Colors.deepPurple.shade200,
+                          ? Colors.blue.shade500
+                          : Colors.blue.shade100,
                   side: const BorderSide(
-                    color: Color.fromRGBO(245, 247, 249, 1),
+                    color: Colors.blue,
                   ),
                   label: Text(filter),
                   labelStyle: const TextStyle(
