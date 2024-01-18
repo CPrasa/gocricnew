@@ -265,7 +265,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       // sign up google
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          try {
+                            await controller.signInWithGoogle();
+                          } catch (e) {
+                            // Handle the Google Sign In error, if any.
+                            print("Error signing in with Google: $e");
+                          }
+                        },
                         style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -283,9 +290,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),
                               child: SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Logo(Logos.google)),
+                                height: 20,
+                                width: 20,
+                                child: Logo(Logos.google),
+                              ),
                             ),
                             const Text(
                               'Signup with Google',

@@ -17,4 +17,13 @@ class LoginController extends GetxController {
       ));
     }
   }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      await AuthenticationRepository.instance.signInWithGoogle();
+    } catch (e) {
+      // Handle Google Sign In errors, if any.
+      print("Error signing in with Google: $e");
+    }
+  }
 }

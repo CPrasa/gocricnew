@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
+  google_sign_in: ^6.2.1
   http: ^0.13.1
   icons_plus: ^4.0.0
   intl: ^0.17.0

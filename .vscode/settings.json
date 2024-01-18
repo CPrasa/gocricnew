@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "D:/GoCric MApp/gocricnew/linux"
+    "cmake.sourceDirectory": "D:/GoCric MApp/gocricnew/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
