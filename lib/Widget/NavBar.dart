@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../src/features/authentication/controllers/authentication_repository.dart';
 
 class NavBar extends StatelessWidget {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -12,7 +14,7 @@ class NavBar extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             accountName: const Text('Oflutter.com'),
-            accountEmail: const Text('example@gmail.com'),
+            accountEmail: Text(user.email!),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
