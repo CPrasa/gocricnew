@@ -13,12 +13,21 @@ class NavBar extends StatelessWidget {
       future: _getAccountPicture(),
       builder: (context, snapshot) {
         return Drawer(
+          backgroundColor: Colors.blue.shade100,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               UserAccountsDrawerHeader(
-                accountName: const Text('User Email Address'),
-                accountEmail: Text(user.email!),
+                accountName: const Text(
+                  'Email Address',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black),
+                ),
+                accountEmail: Text(
+                  user.email!,
+                  style: const TextStyle(backgroundColor: Colors.black),
+                ),
                 currentAccountPicture: CircleAvatar(
                   child: ClipOval(
                     child: Image.network(
@@ -30,11 +39,11 @@ class NavBar extends StatelessWidget {
                   ),
                 ),
                 decoration: const BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.blue,
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: NetworkImage(
-                        'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg'),
+                        'https://t4.ftcdn.net/jpg/01/98/57/21/360_F_198572137_ZaaT2TEs02uOJMVdRLF9447bdjPeln8B.jpg'),
                   ),
                 ),
               ),
@@ -61,6 +70,11 @@ class NavBar extends StatelessWidget {
                     },
                   );
                 },
+              ),
+              ListTile(
+                leading: const Icon(Icons.description),
+                title: const Text('Policies'),
+                onTap: () => null,
               ),
               ListTile(
                 title: const Text('Log Out'),
