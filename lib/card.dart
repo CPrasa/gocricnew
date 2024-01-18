@@ -98,7 +98,7 @@ class ProductCard extends StatelessWidget {
 
   Widget _buildTeamInfo(BuildContext context, String teamName) {
     return Container(
-      width: 250,
+      width: 200,
       alignment: Alignment.centerLeft,
       child: Column(
         children: [

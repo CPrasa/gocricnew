@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gocric/Widget/appBarWidget.dart';
 import 'package:gocric/Widget/navbar.dart';
 import 'package:gocric/news_page.dart';
+import 'package:gocric/ranking.dart';
 import 'package:intl/intl.dart';
 import 'API Services/api_service.dart';
 import 'API Services/api_service_date.dart';
@@ -181,6 +182,10 @@ class _HomePageState extends State<HomePage> {
             Icons.newspaper_outlined,
             color: Colors.deepPurple,
           ),
+          Icon(
+            Icons.sports_cricket,
+            color: Colors.deepPurple,
+          ),
         ],
         index: index,
         onTap: (selectedindex) {
@@ -218,6 +223,9 @@ class _HomePageState extends State<HomePage> {
         break;
       case 1:
         widget = const NewsPage();
+        break;
+      case 2:
+        widget = RankPage();
         break;
       default:
         widget = _buildBody(filters);

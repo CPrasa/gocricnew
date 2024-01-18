@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gocric/API%20Services/news_api_service.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:gocric/Widget/newscard.dart';
-import 'news_api_service.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);

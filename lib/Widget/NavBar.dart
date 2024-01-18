@@ -31,16 +31,16 @@ class NavBar extends StatelessWidget {
                       'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg')),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.favorite),
-            title: const Text('Favorites'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Friends'),
-            onTap: () => null,
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.favorite),
+          //   title: const Text('Favorites'),
+          //   onTap: () => null,
+          // ),
+          // ListTile(
+          //   leading: const Icon(Icons.person),
+          //   title: const Text('Friends'),
+          //   onTap: () => null,
+          // ),
           ListTile(
             leading: const Icon(Icons.share),
             title: const Text('Share'),
@@ -51,8 +51,7 @@ class NavBar extends StatelessWidget {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text('Share'),
-                    content:
-                        const Text('Implement your share functionality here.'),
+                    content: const Text(''),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -66,16 +65,16 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
-          const ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Request'),
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () => null,
-          ),
+          // const ListTile(
+          //   leading: Icon(Icons.notifications),
+          //   title: Text('Request'),
+          // ),
+          // const Divider(),
+          // ListTile(
+          //   leading: const Icon(Icons.settings),
+          //   title: const Text('Settings'),
+          //   onTap: () => null,
+          // ),
           ListTile(
             leading: const Icon(Icons.description),
             title: const Text('Policies'),
