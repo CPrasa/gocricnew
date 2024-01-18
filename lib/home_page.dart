@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
     // final List<String> filters = ['Live', 'Yesterday', 'Today', 'Tomorrow'];
 
     return Scaffold(
-      drawer: const NavBar(),
+      drawer: NavBar(),
       appBar: const AppBarWidget(),
       backgroundColor: Colors.deepPurple,
       bottomNavigationBar: CurvedNavigationBar(
