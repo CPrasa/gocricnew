@@ -75,5 +75,11 @@ class AuthenticationRepository extends GetxController {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future<void> logout() async => await _auth.signOut();
+  Future<void> logout() async {
+    // Sign out from Firebase authentication
+    await FirebaseAuth.instance.signOut();
+
+    // Sign out from Google
+    await GoogleSignIn().signOut();
+  }
 }
