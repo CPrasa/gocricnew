@@ -2,13 +2,14 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gocric/Widget/appBarWidget.dart';
 import 'package:gocric/Widget/navbar.dart';
-import 'package:gocric/card.dart';
 import 'package:gocric/news_page.dart';
 import 'package:intl/intl.dart';
 import 'API Services/api_service.dart';
 import 'API Services/api_service_date.dart';
 import 'API Services/api_service_yesterday.dart';
 import 'API Services/api_service_tomorrow.dart';
+import 'Widget/calender.dart';
+import 'package:gocric/score_card_loop.dart';
 
 void main() {
   runApp(const MyApp());
@@ -86,12 +87,48 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  // void handleUserInput(String datedate) {
+  //   // Update the $dateText variable
+  //   setState(() {
+  //     dateText = datedate;
+  //   });
+
+  //   // Call fetchDataYesterday with the updated date
+  //   fetchDataYesterday();
+  // }
+
+  // Future<void> fetchDataYesterday() async {
+  //   try {
+  //     String dateName = '$dateText';
+
+  //     final data1 = await ApiServiceYesterday.fetchDataYesterday(
+  //       dateName: dateName,
+  //     );
+
+  //     setState(() {
+  //       apiDataYesterday = data1!;
+  //       isLoading = false;
+  //     });
+  //   } catch (error) {
+  //     debugPrint('Error fetching data: $error');
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
+
   Future<void> fetchDataYesterday() async {
     try {
-      final data1 = await ApiServiceYesterday.fetchDataYesterday();
-      apiDataYesterday = data1!;
+      //String dateName = '$dateText';
+      //String formtedDate = "your_formatted_date_value";
+
+      final data1 = await ApiServiceYesterday.fetchDataYesterday(
+          //dateName: dateName,
+          //formtedDate: formtedDate,
+          );
+
       setState(() {
-        apiDataYesterday = data1;
+        apiDataYesterday = data1!;
         isLoading = false;
       });
     } catch (error) {
@@ -188,54 +225,16 @@ class _HomePageState extends State<HomePage> {
     }
     return widget;
   }
-  // Widget _buildHeader() {
-  //   return Column(
-  //     children: [
-  //       Padding(
-  //         padding: const EdgeInsets.all(5),
-  //         child: Image.asset(
-  //           'assets/images/ground.jpg',
-  //           width: 378,
-  //           height: 178,
-  //         ),
-  //       ),
-  //       const SizedBox(
-  //         height: 10,
-  //       ),
-  //     ],
-  //   );
-  // }
 
   Widget _buildDatePickerIcon(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        DateTime? pickedDate = await showDatePicker(
-          context: context,
-          initialDate: selectedDate,
-          firstDate: DateTime(2000),
-          lastDate: DateTime(2101),
-        );
-
-        if (pickedDate != null && pickedDate != selectedDate) {
-          setState(() {
-            selectedDate = pickedDate;
-            selectedFilter = '';
-          });
-        }
+    return CalendarWidget(
+      selectedDate: selectedDate,
+      onDateSelected: (pickedDate) {
+        setState(() {
+          selectedDate = pickedDate;
+          selectedFilter = '';
+        });
       },
-      child: Container(
-        padding: const EdgeInsets.only(right: 20),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Icon(
-              Icons.calendar_month,
-              color: Color.fromARGB(255, 255, 255, 255),
-              size: 40,
-            ),
-          ],
-        ),
-      ),
     );
   }
 
@@ -337,214 +336,27 @@ class _HomePageState extends State<HomePage> {
           children: [
             if (selectedFilter == 'Live') ...[
               for (int i = 0; i < apiData['Stages'].length; i++)
-                ProductCard(
-                  team1Name: apiData['Stages'][i]['Events'][0]['T1'][0]['Nm'],
-                  team2Name: apiData['Stages'][i]['Events'][0]['T2'][0]['Nm'],
-                  team1Overs1:
-                      apiData['Stages'][i]['Events'][0]['Tr1CO1'] != null
-                          ? '(${apiData['Stages'][i]['Events'][0]['Tr1CO1']})'
-                          : '',
-                  team1Overs2:
-                      apiData['Stages'][i]['Events'][0]['Tr1CO2'] != null
-                          ? '(${apiData['Stages'][i]['Events'][0]['Tr1CO2']})'
-                          : '',
-                  team1Score1: apiData['Stages'][i]['Events'][0]['Tr1C1'] !=
-                          null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                      : 'yet to bat',
-                  team1Score2: apiData['Stages'][i]['Events'][0]['Tr1C2'] !=
-                          null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
-                      : '',
-                  team2Score1: apiData['Stages'][i]['Events'][0]['Tr2C1'] !=
-                          null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : 'yet to bat',
-                  team2Score2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
-                          null
-                      ? '${apiData['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
-                      : '',
-                  team2Overs1:
-                      apiData['Stages'][i]['Events'][0]['Tr2CO1'] != null
-                          ? '(${apiData['Stages'][i]['Events'][0]['Tr2CO1']})'
-                          : '(0.0)',
-                  team2Overs2: apiData['Stages'][i]['Events'][0]['Tr2C2'] !=
-                          null
-                      ? '(${apiData['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiData['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
-                      : '',
-                  status:
-                      '${apiData['Stages'][i]['Events'][0]['EtTx']} (${apiData['Stages'][i]['Events'][0]['ErnInf']})\n${apiData['Stages'][i]['Events'][0]['EpsL']}',
-                  commentary: apiData['Stages'][i]['Events'][0]['ECo'],
-                ),
-            ],
-            if (selectedFilter == 'Today') ...[
-              // Text(
-              //   dateText,
-              //   style: const TextStyle(fontSize: 18),
-              // )
-
+                CustomProductCard(eventData: apiData['Stages'][i]['Events'][0]),
+            ] else if (selectedFilter == 'Today') ...[
               for (int i = 0; i < apiDataByDate['Stages'].length; i++)
-                ProductCard(
-                  team1Name: apiDataByDate['Stages'][i]['Events'][0]['T1'][0]
-                      ['Nm'],
-                  team2Name: apiDataByDate['Stages'][i]['Events'][0]['T2'][0]
-                      ['Nm'],
-                  team1Overs1: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr1CO1'] !=
-                          null
-                      ? '(${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO1']})'
-                      : '',
-                  team1Overs2: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr1CO2'] !=
-                          null
-                      ? '(${apiDataByDate['Stages'][i]['Events'][0]['Tr1CO2']})'
-                      : '',
-                  team1Score1: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr1C1'] !=
-                          null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                      : 'yet to bat',
-                  team1Score2: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr1C2'] !=
-                          null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
-                      : '',
-                  team2Score1: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr2C1'] !=
-                          null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : 'yet to bat',
-                  team2Score2: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr2C2'] !=
-                          null
-                      ? '${apiDataByDate['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
-                      : '',
-                  team2Overs1: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr2CO1'] !=
-                          null
-                      ? '(${apiDataByDate['Stages'][i]['Events'][0]['Tr2CO1']})'
-                      : '(0.0)',
-                  team2Overs2: apiDataByDate['Stages'][i]['Events'][0]
-                              ['Tr2C2'] !=
-                          null
-                      ? '(${apiDataByDate['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataByDate['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
-                      : '',
-                  status:
-                      '${apiDataByDate['Stages'][i]['Events'][0]['EtTx']} (${apiDataByDate['Stages'][i]['Events'][0]['ErnInf']})\n${apiDataByDate['Stages'][i]['Events'][0]['EpsL']}',
-                  commentary: apiDataByDate['Stages'][i]['Events'][0]['ECo'],
-                ),
-            ],
-            if (selectedFilter == 'Tomorrow') ...[
-              // Text(
-              //   dateText,
-              //   style: const TextStyle(fontSize: 18),
-              // ),
+                CustomProductCard(
+                    eventData: apiDataByDate['Stages'][i]['Events'][0]),
+            ] else if (selectedFilter == 'Tomorrow') ...[
               for (int i = 0; i < apiDataTomorrow['Stages'].length; i++)
-                ProductCard(
-                  team1Name: apiDataTomorrow['Stages'][i]['Events'][0]['T1'][0]
-                      ['Nm'],
-                  team2Name: apiDataTomorrow['Stages'][i]['Events'][0]['T2'][0]
-                      ['Nm'],
-                  team1Overs1: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr1CO1'] !=
-                          null
-                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CO1']})'
-                      : '',
-                  team1Overs2: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr1CO2'] !=
-                          null
-                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CO2']})'
-                      : '',
-                  team1Score1: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr1C1'] !=
-                          null
-                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                      : 'yet to bat',
-                  team1Score2: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr1C2'] !=
-                          null
-                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
-                      : '',
-                  team2Score1: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr2C1'] !=
-                          null
-                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : 'yet to bat',
-                  team2Score2: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr2C2'] !=
-                          null
-                      ? '${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
-                      : '',
-                  team2Overs1: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr2CO1'] !=
-                          null
-                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CO1']})'
-                      : '(0.0)',
-                  team2Overs2: apiDataTomorrow['Stages'][i]['Events'][0]
-                              ['Tr2C2'] !=
-                          null
-                      ? '(${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataTomorrow['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
-                      : '',
-                  status:
-                      '${apiDataTomorrow['Stages'][i]['Events'][0]['EtTx']} (${apiDataTomorrow['Stages'][i]['Events'][0]['ErnInf']})\n${apiDataTomorrow['Stages'][i]['Events'][0]['EpsL']}',
-                  commentary: apiDataTomorrow['Stages'][i]['Events'][0]['ECo'],
-                ),
-            ],
-            if (selectedFilter == 'Yesterday') ...[
-              // Text(
-              //   dateText,
-              //   style: const TextStyle(fontSize: 18),
-              // ),
+                CustomProductCard(
+                    eventData: apiDataTomorrow['Stages'][i]['Events'][0]),
+            ] else if (selectedFilter == 'Yesterday') ...[
               for (int i = 0; i < apiDataYesterday['Stages'].length; i++)
-                ProductCard(
-                  team1Name: apiDataYesterday['Stages'][i]['Events'][0]['T1'][0]
-                      ['Nm'],
-                  team2Name: apiDataYesterday['Stages'][i]['Events'][0]['T2'][0]
-                      ['Nm'],
-                  team1Overs1: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr1CO1'] !=
-                          null
-                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CO1']})'
-                      : '',
-                  team1Overs2: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr1CO2'] !=
-                          null
-                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CO2']})'
-                      : '',
-                  team1Score1: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr1C1'] !=
-                          null
-                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr1C1'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CW1'].toString()}'
-                      : 'yet to bat',
-                  team1Score2: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr1C2'] !=
-                          null
-                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr1C2'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr1CW2'].toString()}'
-                      : '',
-                  team2Score1: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr2C1'] !=
-                          null
-                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CW1'].toString()}'
-                      : 'yet to bat',
-                  team2Score2: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr2C2'] !=
-                          null
-                      ? '${apiDataYesterday['Stages'][i]['Events'][0]['Tr2C2'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CW2'].toString()}'
-                      : '',
-                  team2Overs1: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr2CO1'] !=
-                          null
-                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CO1']})'
-                      : '(0.0)',
-                  team2Overs2: apiDataYesterday['Stages'][i]['Events'][0]
-                              ['Tr2C2'] !=
-                          null
-                      ? '(${apiDataYesterday['Stages'][i]['Events'][0]['Tr2C1'].toString()}/${apiDataYesterday['Stages'][i]['Events'][0]['Tr2CW1'].toString()})'
-                      : '',
-                  status:
-                      '${apiDataYesterday['Stages'][i]['Events'][0]['EtTx']} (${apiDataYesterday['Stages'][i]['Events'][0]['ErnInf']})\n${apiDataYesterday['Stages'][i]['Events'][0]['EpsL']}',
-                  commentary: apiDataYesterday['Stages'][i]['Events'][0]['ECo'],
-                ),
+                CustomProductCard(
+                    eventData: apiDataYesterday['Stages'][i]['Events'][0]),
+            ] else ...[
+              Text(
+                dateText,
+                style: const TextStyle(fontSize: 18),
+              ),
+              for (int i = 0; i < apiDataYesterday['Stages'].length; i++)
+                CustomProductCard(
+                    eventData: apiDataYesterday['Stages'][i]['Events'][0]),
             ],
           ],
         ),

@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiServiceYesterday {
-  static Future<Map<String, dynamic>?> fetchDataYesterday() async {
+  static Future<Map<String, dynamic>?> fetchDataYesterday(
+      {String? dateName, formtedDate}) async {
     String datelist = 'list-by-date';
     final String apiUrl =
         'https://livescore6.p.rapidapi.com/matches/v2/$datelist';
