@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:gocric/src/features/authentication/controllers/signup_controller.dart';
 import 'package:icons_plus/icons_plus.dart';
 
-import '../../../theme/theme.dart';
 import '../../../widgets/custom_scaffold.dart';
 import 'login_screen.dart';
 
@@ -49,12 +48,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // get started text
-                      Text(
+                      const Text(
                         'Get Started',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
-                          color: lightColorScheme.primary,
+                          color: Colors.blue,
                         ),
                       ),
                       const SizedBox(
@@ -168,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 agreePersonalData = value!;
                               });
                             },
-                            activeColor: lightColorScheme.primary,
+                            activeColor: Colors.blue,
                           ),
                           const Text(
                             'I agree to the processing of ',
@@ -176,11 +175,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               color: Colors.black45,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Personal data',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: lightColorScheme.primary,
+                              color: Colors.blue,
                             ),
                           ),
                         ],
@@ -192,6 +191,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.blue.shade600),
+                          ),
                           onPressed: () {
                             if (_formSignupKey.currentState!.validate() &&
                                 agreePersonalData) {
@@ -211,11 +220,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             }
                           },
-                          child: const Text('SIGN UP'),
+                          child: const Text(
+                            'SIGN UP',
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 30.0,
+                        height: 20.0,
                       ),
                       // sign up divider
                       Row(
@@ -233,7 +245,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               horizontal: 10,
                             ),
                             child: Text(
-                              'Sign up with',
+                              'OR',
                               style: TextStyle(
                                 color: Colors.black45,
                               ),
@@ -248,18 +260,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 30.0,
+                        height: 20.0,
                       ),
-                      // sign up social media logo
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Logo(Logos.facebook_f),
-                          Logo(Logos.twitter),
-                          Logo(Logos.google),
-                          Logo(Logos.apple),
-                        ],
+
+                      // sign up google
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: const BorderSide(color: Colors.black),
+                            ),
+                          ),
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20.0),
+                              child: SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: Logo(Logos.google)),
+                            ),
+                            const Text(
+                              'Signup with Google',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
+                            ),
+                          ],
+                        ),
                       ),
+
                       const SizedBox(
                         height: 25.0,
                       ),
@@ -282,11 +318,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Log in',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: lightColorScheme.primary,
+                                color: Colors.blue,
                               ),
                             ),
                           ),
