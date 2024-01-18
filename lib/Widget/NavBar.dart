@@ -21,12 +21,12 @@ class NavBar extends StatelessWidget {
                 accountName: const Text(
                   'Email Address',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 accountEmail: Text(
                   user.email!,
-                  style: const TextStyle(backgroundColor: Colors.black),
+                  style: const TextStyle(fontWeight: FontWeight.w400),
                 ),
                 currentAccountPicture: CircleAvatar(
                   child: ClipOval(
@@ -43,7 +43,7 @@ class NavBar extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: NetworkImage(
-                        'https://t4.ftcdn.net/jpg/01/98/57/21/360_F_198572137_ZaaT2TEs02uOJMVdRLF9447bdjPeln8B.jpg'),
+                        'https://cdn5.vectorstock.com/i/1000x1000/50/39/abstract-cricket-player-polygonal-low-poly-vector-18755039.jpg'),
                   ),
                 ),
               ),
@@ -56,8 +56,7 @@ class NavBar extends StatelessWidget {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: const Text('Share'),
-                        content: const Text(
-                            'Implement your share functionality here.'),
+                        content: const Text('www.Gocric.com'),
                         actions: [
                           TextButton(
                             onPressed: () {
