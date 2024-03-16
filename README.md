@@ -1,7 +1,6 @@
 # GoCric: Cricket Live Score App
 
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview![WhatsApp Image 2024-03-16 at 18 11 28](https://github.com/CPrasa/gocricnew/assets/121708803/d3101d20-fbf8-42cb-b9e8-7c04cbb98f34)
 
