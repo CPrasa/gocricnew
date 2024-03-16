@@ -1,16 +1,38 @@
-# gocric
+# GoCric: Cricket Live Score App
 
-A new Flutter project.
+![GoCric Logo](images/gocric_logo.png)
 
-## Getting Started
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-This project is a starting point for a Flutter application.
+## Overview
 
-A few resources to get you started if this is your first Flutter project:
+GoCric is a cricket live score app that provides real-time updates on matches from around the world. Leveraging Flutter for cross-platform development and Firebase for backend support, the app fetches data from RapidAPI to display comprehensive match details including scores, teams, players, and match schedules. The user-friendly interface categorizes matches based on today, yesterday, and tomorrow, ensuring users stay updated on live and recent cricket action.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Real-time updates on cricket matches.
+- Fetches data from RapidAPI for match details.
+- Firebase backend for enhanced functionality.
+- User-friendly interface with match categorization.
+- Supports cross-platform development with Flutter.
+
+## Technologies Used
+
+- Flutter
+- Dart programming language
+- Firebase
+- RapidAPI
+- Android Studio / Visual Studio Code
+
+## Screenshots
+
+![Screenshot 1](images/screenshot1.png)
+![Screenshot 2](images/screenshot2.png)
+![GIF](images/demo.gif)
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/gocric.git
